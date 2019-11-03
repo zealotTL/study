@@ -7,3 +7,7 @@ spring:
     host: 127.0.0.1
     port: 6379
     password: zealot
+  activemq:
+    user: zealot
+    password: zealot
+    broker-url: tcp://127.0.0.1:61616
