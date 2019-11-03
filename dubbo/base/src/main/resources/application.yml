@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+dubbo:
+  application:
+    registry: zookeeper://localhost:2181
+  scan:
+    base-packages: group.zealot.study.dubbo
+  protocol:
+    name: dubbo
+    port: -1
+    client: netty
+    register: true
+  consumer:
+    check: false
+    retries: 0
+    timeout: 30000
+    registry: ${dubbo.application.registry}
+    lazy: true
+  provider:
+    retries: 0
+    registry: ${dubbo.application.registry}
