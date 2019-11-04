@@ -6,3 +6,4 @@
 
 ## datasource模块
 #####需要redis、mysql8、activemq支持。
+#####简单光连接池应用；简单redis连接应用；简单activemq应用
