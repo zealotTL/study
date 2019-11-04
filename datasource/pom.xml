@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>group.zealot.study</groupId>
-        <artifactId>dubbo</artifactId>
+        <artifactId>project</artifactId>
         <version>0.1</version>
     </parent>
 
@@ -33,6 +33,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+
         <!--        datasource 配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
