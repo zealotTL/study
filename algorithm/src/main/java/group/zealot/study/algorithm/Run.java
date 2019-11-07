@@ -15,6 +15,18 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-        context.getBean(MaoPaoSort.class).sort();
+        context.getBean(MaoPaoSort.class).sort(create(10));
+    }
+
+
+    /**
+     * 随机生成length长度的数组，随机数从0-99之间
+     */
+    public static int[] create(int length) {
+        int[] numbers = new int[length];
+        for (int i = 0; i < length; i++) {
+            numbers[i] = (int) (Math.random() * 100);
+        }
+        return numbers;
     }
 }
