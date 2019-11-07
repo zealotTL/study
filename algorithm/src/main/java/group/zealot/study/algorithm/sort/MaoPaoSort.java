@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 public class MaoPaoSort {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
+    private int contrastNumber = 0;
+
     public void sort() {
         int length = 10;
         int[] numbers = create(length);
@@ -27,7 +29,7 @@ public class MaoPaoSort {
         }
 
         logger.info("结果：" + JSONObject.toJSONString(numbers));
-
+        logger.info("总比较次数：" + contrastNumber);
     }
 
     /**
@@ -58,5 +60,7 @@ public class MaoPaoSort {
             numbers[i + 1] = a;
             numbers[i] = b;
         }
+
+        contrastNumber++;
     }
 }
