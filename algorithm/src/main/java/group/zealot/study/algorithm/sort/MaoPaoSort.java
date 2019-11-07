@@ -14,22 +14,25 @@ public class MaoPaoSort {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     private int contrastNumber = 0;
+    private int exchangeNumber = 0;
 
     public void sort() {
-        int length = 10;
+        int length = 4;
         int[] numbers = create(length);
         logger.info("原始：" + JSONObject.toJSONString(numbers));
 
         int num = 1;
         while (num < length) {
-            for (int i = 0; i < length - 1; i++) {
+            for (int i = 0; i < length - num; i++) {
                 contrastAndExchange(numbers, i);
             }
             num++;
+            logger.info((num - 1) + "次：" + JSONObject.toJSONString(numbers));
         }
 
         logger.info("结果：" + JSONObject.toJSONString(numbers));
         logger.info("总比较次数：" + contrastNumber);
+        logger.info("总交换次数：" + exchangeNumber);
     }
 
     /**
@@ -59,6 +62,8 @@ public class MaoPaoSort {
         if (a > b) {
             numbers[i + 1] = a;
             numbers[i] = b;
+
+            exchangeNumber++;
         }
 
         contrastNumber++;
