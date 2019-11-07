@@ -1,6 +1,6 @@
 package group.zealot.study.algorithm;
 
-import group.zealot.study.algorithm.sort.MaoPaoSort;
+import group.zealot.study.algorithm.sort.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
