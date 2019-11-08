@@ -1,6 +1,5 @@
 package group.zealot.study.algorithm.sort;
 
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +11,7 @@ public class SelectionSort extends AbsSort {
         for (int i = 0; i < length - 1; i++) {
             contrastAndExchange(numbers, length, i);
             num++;
-            logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
+            logNumbers(numbers, num);
         }
     }
 

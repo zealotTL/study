@@ -78,4 +78,8 @@ public abstract class AbsSort implements Sort {
 
         exchangeNumber++;
     }
+
+    protected void logNumbers(int[] numbers, int num) {
+        logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
+    }
 }
