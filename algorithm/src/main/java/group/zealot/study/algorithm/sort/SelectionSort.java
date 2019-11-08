@@ -26,10 +26,12 @@ public class SelectionSort extends AbsSort {
                 index = j;
             }
         }
-        int tmp = numbers[index];
-        numbers[index] = numbers[i];
-        numbers[i] = tmp;
-        exchangeNumber++;
+        if (index != i) {
+            int tmp = numbers[index];
+            numbers[index] = numbers[i];
+            numbers[i] = tmp;
+            exchangeNumber++;
+        }
     }
 
 }
