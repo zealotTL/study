@@ -29,4 +29,15 @@ public class Run {
         }
         return numbers;
     }
+
+    public static void check(int[] numbers) {
+        boolean fg = true;
+        for (int i = 0; i < numbers.length - 1; i++) {
+            if (numbers[i] > numbers[i + 1]) {
+                fg = false;
+                logger.error("错误：number[" + i + "]：" + numbers[i] + " > number[" + (i + 1) + "]：" + numbers[i + 1]);
+            }
+        }
+        logger.info("排序检测：" + (fg ? "通过" : "不通过"));
+    }
 }

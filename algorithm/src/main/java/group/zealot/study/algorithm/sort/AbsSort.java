@@ -1,6 +1,7 @@
 package group.zealot.study.algorithm.sort;
 
 import com.alibaba.fastjson.JSONObject;
+import group.zealot.study.algorithm.Run;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +25,8 @@ public abstract class AbsSort implements Sort {
         logger.info("结果：" + JSONObject.toJSONString(numbers));
         logger.info("总比较次数：" + contrastNumber);
         logger.info("总交换次数：" + exchangeNumber);
+
+        Run.check(numbers);
     }
 
     /**
