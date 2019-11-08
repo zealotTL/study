@@ -19,26 +19,20 @@ public class MaoPaoSort extends AbsSort {
                 contrastAndExchange(numbers, i);
             }
             num++;
-            logger.info((num - 1) + "次：" + JSONObject.toJSONString(numbers));
+            logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
         }
     }
 
     /**
-     * 此方法比较A(number[i])、B(numer[i+1])两个元素，若A元素大于B元素则交换位置
+     * 此方法比较A(numbers[i])、B(numbers[i+1])两个元素，若A元素大于B元素则交换位置
      *
      * @param numbers 数组
-     * @param i       A元素的下标 A=number[i]
+     * @param i       A元素的下标 A=numbers[i]
      */
     private void contrastAndExchange(int[] numbers, int i) {
         int max = contrast(numbers, i, i + 1);
         if (max == i) {
-            int a = numbers[i];
-            int b = numbers[i + 1];
-
-            numbers[i + 1] = a;
-            numbers[i] = b;
-
-            exchangeNumber++;
+            exchange(numbers, i, i + 1);
         }
     }
 }

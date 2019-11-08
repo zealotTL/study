@@ -12,7 +12,7 @@ public class SelectionSort extends AbsSort {
         for (int i = 0; i < length - 1; i++) {
             contrastAndExchange(numbers, length, i);
             num++;
-            logger.info((num - 1) + "次：" + JSONObject.toJSONString(numbers));
+            logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
         }
     }
 
@@ -27,10 +27,7 @@ public class SelectionSort extends AbsSort {
             }
         }
         if (index != i) {
-            int tmp = numbers[index];
-            numbers[index] = numbers[i];
-            numbers[i] = tmp;
-            exchangeNumber++;
+            exchange(numbers, index, i);
         }
     }
 

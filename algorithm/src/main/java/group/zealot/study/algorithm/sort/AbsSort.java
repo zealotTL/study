@@ -36,11 +36,11 @@ public abstract class AbsSort implements Sort {
 
 
     /**
-     * 此方法比较A(number[i])、B(numer[j])两个元素，返回最大的元素（若A==B，则返回i）
+     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
      *
      * @param numbers 数组
-     * @param i       A元素的下标 A=number[i]
-     * @param j       B元素的下标 B=number[j]
+     * @param i       A元素的下标 A=numbers[i]
+     * @param j       B元素的下标 B=numbers[j]
      */
     protected int contrast(int[] numbers, int i, int j) {
         if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
@@ -57,5 +57,25 @@ public abstract class AbsSort implements Sort {
         }
         contrastNumber++;
         return max;
+    }
+
+    /**
+     * 交换A(numbers[i])、B(numbers[j])两个元素空间
+     *
+     * @param numbers 数组
+     * @param i       A元素的下标 A=numbers[i]
+     * @param j       B元素的下标 B=numbers[j]
+     */
+    protected void exchange(int[] numbers, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int a = numbers[i];
+        int b = numbers[j];
+
+        numbers[j] = a;
+        numbers[i] = b;
+
+        exchangeNumber++;
     }
 }
