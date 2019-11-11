@@ -5,28 +5,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class SelectionSort extends AbsSort {
     @Override
-    public void doSort(int[] numbers) {
-        int length = numbers.length;
+    public void doSort() {
         int num = 1;
         for (int i = 0; i < length - 1; i++) {
-            contrastAndExchange(numbers, length, i);
+            contrastAndExchange(i);
             num++;
-            logNumbers(numbers, num);
+            logNumbers(num);
         }
     }
 
 
-    private void contrastAndExchange(int[] numbers, int length, int i) {
+    private void contrastAndExchange(int i) {
         int index = i;
         int j;
         for (j = i + 1; j < length; j++) {
-            int max = contrast(numbers, j, index);
-            if (max == index) {
+            if (iGreaterJ(index, j)) {
                 index = j;
             }
         }
         if (index != i) {
-            exchange(numbers, index, i);
+            exchange(index, i);
         }
     }
 

@@ -15,6 +15,8 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
+        context.getBean(MaoPaoSort.class).sort(create(10));
+        context.getBean(SelectionSort.class).sort(create(10));
         context.getBean(QuickSort.class).sort(create(10));
     }
 

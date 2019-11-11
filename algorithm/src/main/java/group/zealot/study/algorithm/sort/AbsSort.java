@@ -14,15 +14,20 @@ public abstract class AbsSort implements Sort {
      */
     protected int contrastNumber = 0;
     protected int exchangeNumber = 0;
+    protected int[] numbers = null;
+    protected int length = -1;
 
 
     @Override
     public void sort(int[] numbers) {
-        logger.info("原始：" + JSONObject.toJSONString(numbers));
+        this.numbers = numbers;
+        length = numbers.length;
 
-        doSort(numbers);
+        logger.info("原始：" + JSONObject.toJSONString(this.numbers));
 
-        logger.info("结果：" + JSONObject.toJSONString(numbers));
+        doSort();
+
+        logger.info("结果：" + JSONObject.toJSONString(this.numbers));
         logger.info("总比较次数：" + contrastNumber);
         logger.info("总交换次数：" + exchangeNumber);
 
@@ -32,18 +37,26 @@ public abstract class AbsSort implements Sort {
     /**
      * 各排序算法的核心
      */
-    public abstract void doSort(int[] numbers);
+    public abstract void doSort();
 
+    /**
+     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
+     *
+     * @param i A元素的下标 A=numbers[i]
+     * @param j B元素的下标 B=numbers[j]
+     */
+    protected boolean iGreaterJ(int i, int j) {
+        return contrastReturnMax(i, j) == i;
+    }
 
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
      *
-     * @param numbers 数组
-     * @param i       A元素的下标 A=numbers[i]
-     * @param j       B元素的下标 B=numbers[j]
+     * @param i A元素的下标 A=numbers[i]
+     * @param j B元素的下标 B=numbers[j]
      */
-    protected int contrast(int[] numbers, int i, int j) {
-        if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
+    protected int contrastReturnMax(int i, int j) {
+        if (i > length || j > length || i < 0 || j < 0) {
             throw new RuntimeException("数组越界i:" + i + " j" + j + " numbers.length:" + numbers.length);
         }
 
@@ -62,11 +75,10 @@ public abstract class AbsSort implements Sort {
     /**
      * 交换A(numbers[i])、B(numbers[j])两个元素空间
      *
-     * @param numbers 数组
-     * @param i       A元素的下标 A=numbers[i]
-     * @param j       B元素的下标 B=numbers[j]
+     * @param i A元素的下标 A=numbers[i]
+     * @param j B元素的下标 B=numbers[j]
      */
-    protected void exchange(int[] numbers, int i, int j) {
+    protected void exchange(int i, int j) {
         if (i == j) {
             return;
         }
@@ -79,7 +91,7 @@ public abstract class AbsSort implements Sort {
         exchangeNumber++;
     }
 
-    protected void logNumbers(int[] numbers, int num) {
+    protected void logNumbers(int num) {
         logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
     }
 }
