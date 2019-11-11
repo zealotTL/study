@@ -15,7 +15,7 @@ public class QuickSort extends AbsSort {
     }
 
     /**
-     * 对数组numbers的部分（numbers[start]~numbers[end]）进行排序
+     * 对数组numbers的部分[numbers[start],numbers[end]]进行排序
      *
      * @param start 起始元素下标
      * @param end   结束元素下标
@@ -25,6 +25,8 @@ public class QuickSort extends AbsSort {
 
         int left = start + 1;
         int right = end;
+        //从队列右侧寻找第一个小于基准元素并交换，然后从队列左侧寻找第一个大于基准元素并交换。
+        // 当left == right时，则比较此元素与基准大小并交换位置。跳出循环，此时队列两次元素以基准元素分割（左小右大）
         while (left <= right) {
             right = getRight(left, right, q);
             if (right == -1) {

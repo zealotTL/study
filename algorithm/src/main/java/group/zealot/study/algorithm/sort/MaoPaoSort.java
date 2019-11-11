@@ -13,8 +13,11 @@ public class MaoPaoSort extends AbsSort {
         int length = numbers.length;
         int num = 1;
         while (num < length) {
+            //每一轮for循环，则找出[0,length-num)的最大元素，交换位置至numbers[length-num-1]
             for (int i = 0; i < length - num; i++) {
-                contrastAndExchange(i, i + 1);
+                if (contrastAndExchange(i, i + 1)) {
+                    break;
+                }
             }
             num++;
             logNumbers(num);
@@ -27,10 +30,12 @@ public class MaoPaoSort extends AbsSort {
      * @param i A元素的下标 A=numbers[i]
      * @param j A元素的下标 B=numbers[j]
      */
-    private void contrastAndExchange(int i, int j) {
+    private boolean contrastAndExchange(int i, int j) {
         int max = contrastReturnMax(i, j);
         if (max == i) {
             exchange(i, j);
+            return true;
         }
+        return false;
     }
 }
