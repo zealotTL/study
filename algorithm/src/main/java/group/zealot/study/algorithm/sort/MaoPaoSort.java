@@ -13,14 +13,14 @@ public class MaoPaoSort extends AbsSort {
         int length = numbers.length;
         int num = 1;
         while (num < length) {
-            //每一轮for循环，则找出[0,length-num)的最大元素，交换位置至numbers[length-num-1]
+            //每一轮for循环，则找出numbers[0,length-num-1]的最大元素，交换位置至numbers[length-num-1]
             for (int i = 0; i < length - num; i++) {
                 if (contrastAndExchange(i, i + 1)) {
                     break;
                 }
             }
             num++;
-            logNumbers(num);
+            logNumbers(num - 1);
         }
     }
 

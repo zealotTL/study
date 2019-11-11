@@ -9,8 +9,7 @@ public class SelectionSort extends AbsSort {
         int num = 1;
         for (int i = 0; i < length - 1; i++) {
             contrastAndExchange(i);
-            num++;
-            logNumbers(num);
+            logNumbers(num++);
         }
     }
 

@@ -92,6 +92,6 @@ public abstract class AbsSort implements Sort {
     }
 
     protected void logNumbers(int num) {
-        logger.debug((num - 1) + "次：" + JSONObject.toJSONString(numbers));
+        logger.debug(num + "次：" + JSONObject.toJSONString(numbers));
     }
 }

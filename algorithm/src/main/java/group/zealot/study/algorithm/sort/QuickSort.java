@@ -15,7 +15,7 @@ public class QuickSort extends AbsSort {
     }
 
     /**
-     * 对数组numbers的部分[numbers[start],numbers[end]]进行排序
+     * 对数组numbers[start,end]进行排序
      *
      * @param start 起始元素下标
      * @param end   结束元素下标
@@ -48,7 +48,7 @@ public class QuickSort extends AbsSort {
             }
         }
 
-        logNumbers(++num);
+        logNumbers(num++);
         if (start < q - 1) {
             quickSort(start, q - 1);
         }
@@ -59,7 +59,7 @@ public class QuickSort extends AbsSort {
 
 
     /**
-     * 对数组numbers的部分（numbers[start]~numbers[end]），从左边搜索，找到第一个大于 基准元素(numbers[q])的元素，返回其下标，否则返回-1
+     * 对数组numbers[start,end]，从左边搜索，找到第一个大于 基准元素(numbers[q])的元素，返回其下标，否则返回-1
      *
      * @param start 起始元素下标
      * @param end   结束元素下标
@@ -75,7 +75,7 @@ public class QuickSort extends AbsSort {
     }
 
     /**
-     * 对数组numbers的部分（numbers[start]~numbers[end]），从右边搜索，找到第一个小于 基准元素(numbers[q])的元素，返回其下标，否则返回-1
+     * 对数组numbers[start,end]，从右边搜索，找到第一个小于 基准元素(numbers[q])的元素，返回其下标，否则返回-1
      *
      * @param start 起始元素下标
      * @param end   结束元素下标
