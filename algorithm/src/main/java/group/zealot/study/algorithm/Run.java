@@ -18,6 +18,7 @@ public class Run {
         context.getBean(MaoPaoSort.class).sort(create(10));
         context.getBean(SelectionSort.class).sort(create(10));
         context.getBean(QuickSort.class).sort(create(10));
+        context.getBean(InertSort.class).sort(create(10));
     }
 
 
