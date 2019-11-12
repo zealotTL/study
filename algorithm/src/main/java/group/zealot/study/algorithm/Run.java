@@ -1,5 +1,6 @@
 package group.zealot.study.algorithm;
 
+import com.alibaba.fastjson.JSONObject;
 import group.zealot.study.algorithm.sort.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,86 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-        context.getBean(MaoPaoSort.class).sort(create(10));
-        context.getBean(SelectionSort.class).sort(create(10));
-        context.getBean(QuickSort.class).sort(create(10));
-        context.getBean(InertSort.class).sort(create(10));
+        {
+            Sort sort = context.getBean(MaoPaoSort.class);
+            logger.info("开始检测" + sort.getClass());
+            if (checkSort(sort)) {
+                logger.info("检测通过:" + sort.getClass());
+            }
+            logger.info("");
+        }
+        {
+            Sort sort = context.getBean(SelectionSort.class);
+            logger.info("开始检测" + sort.getClass());
+            if (checkSort(sort)) {
+                logger.info("检测通过:" + sort.getClass());
+            }
+            logger.info("");
+        }
+        {
+            Sort sort = context.getBean(QuickSort.class);
+            logger.info("开始检测" + sort.getClass());
+            if (checkSort(sort)) {
+                logger.info("检测通过:" + sort.getClass());
+            }
+            logger.info("");
+        }
+        {
+            Sort sort = context.getBean(InertSort.class);
+            logger.info("开始检测" + sort.getClass());
+            if (checkSort(sort)) {
+                logger.info("检测通过:" + sort.getClass());
+            }
+            logger.info("");
+        }
+
+    }
+
+    public static boolean checkSort(Sort sort) {
+        {
+            //检测10位短序列排序情况
+            int i = 0;
+            while (i < 3) {
+                int[] numbers = create(100);
+                sort.sort(numbers);
+                boolean fg = check(numbers);
+                if (!fg) {
+                    logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
+                    return false;
+                }
+                i++;
+            }
+        }
+        {
+            //检测1000位中长序列排序情况
+            int i = 0;
+            while (i < 3) {
+                int[] numbers = create(1000);
+                sort.sort(numbers);
+                boolean fg = check(numbers);
+                if (!fg) {
+                    logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
+                    return false;
+                }
+                i++;
+            }
+        }
+        {
+            //检测100000位长序列排序情况
+            int i = 0;
+            while (i < 3) {
+                int[] numbers = create(10000);
+                sort.sort(numbers);
+                boolean fg = check(numbers);
+                if (!fg) {
+                    logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
+                    return false;
+                }
+                i++;
+            }
+        }
+        return true;
+
     }
 
 
@@ -33,7 +110,7 @@ public class Run {
         return numbers;
     }
 
-    public static void check(int[] numbers) {
+    public static boolean check(int[] numbers) {
         boolean fg = true;
         for (int i = 0; i < numbers.length - 1; i++) {
             if (numbers[i] > numbers[i + 1]) {
@@ -41,6 +118,7 @@ public class Run {
                 logger.error("错误：number[" + i + "]：" + numbers[i] + " > number[" + (i + 1) + "]：" + numbers[i + 1]);
             }
         }
-        logger.info("排序检测：" + (fg ? "通过" : "不通过"));
+        logger.debug("排序检测：" + (fg ? "通过" : "不通过"));
+        return fg;
     }
 }

@@ -11,8 +11,9 @@ public class InertSort extends AbsSort {
     @Override
     public void doSort() {
         //初始第0个元素为有序队列，后面各个元素依次插入到有序队列中，并保持有序
-        for (int i = 1; i < length - 1; i++) {
-            contrastAndInsert(0, i - 1, i);
+        int start = 0;
+        for (int i = start + 1; i <= length - 1; i++) {
+            contrastAndInsert(start, i - 1, i);
             logNumbers(i);
         }
     }
@@ -24,7 +25,7 @@ public class InertSort extends AbsSort {
      * @param p   待排序元素numbers[p]
      */
     private void contrastAndInsert(int start, int end, int p) {
-        for (int i = start; i < end - 1; i++) {
+        for (int i = start; i <= end - 1; i++) {
             //numbers[i] <= numbers[p] <= numbers[i+1]
             if (iGreaterJ(p, i) && iGreaterJ(i + 1, p)) {
                 insert(i + 1, end, p);
@@ -33,10 +34,6 @@ public class InertSort extends AbsSort {
         }
         if (iGreaterJ(start, p)) {
             insert(start, end, p);
-        } else if (iGreaterJ(p, end)) {
-            insert(end, end, p);
-        } else {
-            throw new RuntimeException("此排序算法有异常:numbers[" + start + "," + end + "] numbers[" + p + "]");
         }
     }
 

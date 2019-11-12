@@ -23,15 +23,13 @@ public abstract class AbsSort implements Sort {
         this.numbers = numbers;
         length = numbers.length;
 
-        logger.info("原始：" + JSONObject.toJSONString(this.numbers));
+        logger.debug("原始：" + JSONObject.toJSONString(this.numbers));
 
         doSort();
 
-        logger.info("结果：" + JSONObject.toJSONString(this.numbers));
-        logger.info("总比较次数：" + contrastNumber);
-        logger.info("总交换次数：" + exchangeNumber);
-
-        Run.check(numbers);
+        logger.debug("结果：" + JSONObject.toJSONString(this.numbers));
+        logger.debug("总比较次数：" + contrastNumber);
+        logger.debug("总交换次数：" + exchangeNumber);
     }
 
     /**
