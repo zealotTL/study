@@ -8,6 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class Run {
     public static ConfigurableApplicationContext context;
@@ -16,38 +19,18 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-        {
-            Sort sort = context.getBean(MaoPaoSort.class);
+        List<Sort> list = new ArrayList<>();
+        list.add(context.getBean(MaoPaoSort.class));
+        list.add(context.getBean(SelectionSort.class));
+        list.add(context.getBean(QuickSort.class));
+        list.add(context.getBean(InertSort.class));
+        list.forEach(sort -> {
             logger.info("开始检测" + sort.getClass());
             if (checkSort(sort)) {
                 logger.info("检测通过:" + sort.getClass());
             }
             logger.info("");
-        }
-        {
-            Sort sort = context.getBean(SelectionSort.class);
-            logger.info("开始检测" + sort.getClass());
-            if (checkSort(sort)) {
-                logger.info("检测通过:" + sort.getClass());
-            }
-            logger.info("");
-        }
-        {
-            Sort sort = context.getBean(QuickSort.class);
-            logger.info("开始检测" + sort.getClass());
-            if (checkSort(sort)) {
-                logger.info("检测通过:" + sort.getClass());
-            }
-            logger.info("");
-        }
-        {
-            Sort sort = context.getBean(InertSort.class);
-            logger.info("开始检测" + sort.getClass());
-            if (checkSort(sort)) {
-                logger.info("检测通过:" + sort.getClass());
-            }
-            logger.info("");
-        }
+        });
 
     }
 
