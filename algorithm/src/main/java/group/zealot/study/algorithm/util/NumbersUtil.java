@@ -1,6 +1,6 @@
 package group.zealot.study.algorithm.util;
 
-public class BaseUtil {
+public class NumbersUtil {
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
      *
