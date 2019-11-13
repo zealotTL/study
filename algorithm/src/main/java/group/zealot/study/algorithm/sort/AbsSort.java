@@ -1,6 +1,7 @@
 package group.zealot.study.algorithm.sort;
 
 import com.alibaba.fastjson.JSONObject;
+import group.zealot.study.algorithm.util.BaseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ public abstract class AbsSort implements Sort {
     /**
      * 各排序算法的核心
      */
-    public abstract void doSortMinToMax();
+    abstract public void doSortMinToMax();
 
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
@@ -53,20 +54,9 @@ public abstract class AbsSort implements Sort {
      * @param j B元素的下标 B=numbers[j]
      */
     protected int contrastReturnMax(int i, int j) {
-        if (i > length || j > length || i < 0 || j < 0) {
-            throw new RuntimeException("数组越界i:" + i + " j" + j + " numbers.length:" + numbers.length);
-        }
-
-        int a = numbers[i];
-        int b = numbers[j];
-        int max;
-        if (a >= b) {
-            max = i;
-        } else {
-            max = j;
-        }
+        int maxPoint = BaseUtil.contrastReturnMax(this.numbers, i, j);
         contrastNumber++;
-        return max;
+        return maxPoint;
     }
 
     /**
@@ -76,15 +66,7 @@ public abstract class AbsSort implements Sort {
      * @param j B元素的下标 B=numbers[j]
      */
     protected void exchange(int i, int j) {
-        if (i == j) {
-            return;
-        }
-        int a = numbers[i];
-        int b = numbers[j];
-
-        numbers[j] = a;
-        numbers[i] = b;
-
+        BaseUtil.exchange(this.numbers, i, j);
         exchangeNumber++;
     }
 
