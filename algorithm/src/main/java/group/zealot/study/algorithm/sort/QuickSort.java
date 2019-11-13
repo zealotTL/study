@@ -10,7 +10,7 @@ public class QuickSort extends AbsSort {
     private int num = 0;
 
     @Override
-    public void doSort() {
+    public void doSortMinToMax() {
         quickSort(0, length - 1);
     }
 

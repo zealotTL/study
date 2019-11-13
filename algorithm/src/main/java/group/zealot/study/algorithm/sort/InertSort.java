@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class InertSort extends AbsSort {
 
     @Override
-    public void doSort() {
+    public void doSortMinToMax() {
         //初始第0个元素为有序队列，后面各个元素依次插入到有序队列中，并保持有序
         int start = 0;
         for (int i = start + 1; i <= length - 1; i++) {

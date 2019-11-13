@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SelectionSort extends AbsSort {
     @Override
-    public void doSort() {
+    public void doSortMinToMax() {
         int num = 1;
         /**
          * 第一次for循环代表选择排序的次数，每次与第一位比较大小，

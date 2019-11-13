@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class MaoPaoSort extends AbsSort {
 
     @Override
-    public void doSort() {
+    public void doSortMinToMax() {
         int length = numbers.length;
         int num = 1;
         while (num < length) {

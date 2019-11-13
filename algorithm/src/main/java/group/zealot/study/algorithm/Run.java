@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -30,7 +29,7 @@ public class Run {
 
 //        {
 //            int[] numbers = create(10);
-//            context.getBean(MaoPaoSort.class).sort(numbers);
+//            context.getBean(MaoPaoSort.class).sortMinToMax(numbers);
 //            check(numbers);
 //        }
 
@@ -52,7 +51,7 @@ public class Run {
             int i = 0;
             while (i < 100) {
                 int[] numbers = create(100);
-                sort.sort(numbers);
+                sort.sortMinToMax(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
@@ -66,7 +65,7 @@ public class Run {
             int i = 0;
             while (i < 10) {
                 int[] numbers = create(1000);
-                sort.sort(numbers);
+                sort.sortMinToMax(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
@@ -80,7 +79,7 @@ public class Run {
             int i = 0;
             while (i < 3) {
                 int[] numbers = create(10000);
-                sort.sort(numbers);
+                sort.sortMinToMax(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));

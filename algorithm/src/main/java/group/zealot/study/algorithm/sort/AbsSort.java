@@ -18,13 +18,13 @@ public abstract class AbsSort implements Sort {
 
 
     @Override
-    public void sort(int[] numbers) {
+    public void sortMinToMax(int[] numbers) {
         this.numbers = numbers;
         length = numbers.length;
 
         logger.debug("原始：" + JSONObject.toJSONString(this.numbers));
 
-        doSort();
+        doSortMinToMax();
 
         logger.debug("结果：" + JSONObject.toJSONString(this.numbers));
         logger.debug("总比较次数：" + contrastNumber);
@@ -34,7 +34,7 @@ public abstract class AbsSort implements Sort {
     /**
      * 各排序算法的核心
      */
-    public abstract void doSort();
+    public abstract void doSortMinToMax();
 
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
