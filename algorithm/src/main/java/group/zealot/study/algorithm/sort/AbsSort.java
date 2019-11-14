@@ -5,6 +5,12 @@ import group.zealot.study.algorithm.util.NumbersUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 排序抽象类，集成通用方法功能
+ *
+ * @author zealotTL
+ * @date 2019-11-14 09:13
+ */
 public abstract class AbsSort implements Sort {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());

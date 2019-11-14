@@ -2,6 +2,9 @@ package group.zealot.study.algorithm.sort;
 
 /**
  * 排序
+ *
+ * @author zealotTL
+ * @date 2019-11-14 09:13
  */
 public interface Sort {
     /**

@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * 快速排序
+ *
+ * @author zealotTL
+ * @date 2019-11-14 09:13
  */
 @Component
 public class QuickSort extends AbsSort {
