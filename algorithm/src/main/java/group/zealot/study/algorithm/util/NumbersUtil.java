@@ -8,8 +8,9 @@ public class NumbersUtil {
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
      *
-     * @param i A元素的下标 A=numbers[i]
-     * @param j B元素的下标 B=numbers[j]
+     * @param numbers 目标数组
+     * @param i       A元素的下标 A=numbers[i]
+     * @param j       B元素的下标 B=numbers[j]
      */
     public static int contrastReturnMax(int[] numbers, int i, int j) {
         if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
@@ -30,8 +31,9 @@ public class NumbersUtil {
     /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
      *
-     * @param i A元素的下标 A=numbers[i]
-     * @param j B元素的下标 B=numbers[j]
+     * @param numbers 目标数组
+     * @param i       A元素的下标 A=numbers[i]
+     * @param j       B元素的下标 B=numbers[j]
      */
     public static boolean iGreaterJ(int[] numbers, int i, int j) {
         return contrastReturnMax(numbers, i, j) == i;
@@ -40,8 +42,9 @@ public class NumbersUtil {
     /**
      * 交换A(numbers[i])、B(numbers[j])两个元素空间
      *
-     * @param i A元素的下标 A=numbers[i]
-     * @param j B元素的下标 B=numbers[j]
+     * @param numbers 目标数组
+     * @param i       A元素的下标 A=numbers[i]
+     * @param j       B元素的下标 B=numbers[j]
      */
     public static void exchange(int[] numbers, int i, int j) {
         if (i == j) {
@@ -53,4 +56,5 @@ public class NumbersUtil {
         numbers[j] = a;
         numbers[i] = b;
     }
+
 }
