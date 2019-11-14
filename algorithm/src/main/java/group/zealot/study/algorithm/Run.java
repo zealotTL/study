@@ -8,12 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author zealotTL
- * @date 2019-11-14 09:13
- */
 @SpringBootApplication
 public class Run {
     public static ConfigurableApplicationContext context;
@@ -22,24 +19,11 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-//        {
-//            List<Sort> list = new ArrayList<>();
-//            list.add(context.getBean(MaoPaoSort.class));
-//            list.add(context.getBean(SelectionSort.class));
-//            list.add(context.getBean(QuickSort.class));
-//            list.add(context.getBean(InertSort.class));
-//            test(list);
-//        }
-
-//        {
-//            int[] numbers = create(10);
-//            context.getBean(MaoPaoSort.class).sortMinToMax(numbers);
-//            check(numbers);
-//        }
-
-    }
-
-    private static void test(List<Sort> list) {
+        List<Sort> list = new ArrayList<>();
+        list.add(context.getBean(MaoPaoSort.class));
+//        list.add(context.getBean(SelectionSort.class));
+//        list.add(context.getBean(QuickSort.class));
+//        list.add(context.getBean(InertSort.class));
         list.forEach(sort -> {
             logger.info("开始检测" + sort.getClass());
             if (checkSort(sort)) {
@@ -47,15 +31,16 @@ public class Run {
             }
             logger.info("");
         });
+
     }
 
     public static boolean checkSort(Sort sort) {
         {
-            //检测100位短序列排序情况
+            //检测10位短序列排序情况
             int i = 0;
-            while (i < 100) {
-                int[] numbers = create(100);
-                sort.sortMinToMax(numbers);
+            while (i < 3) {
+                int[] numbers = create(10);
+                sort.sort(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
@@ -67,9 +52,9 @@ public class Run {
         {
             //检测1000位中长序列排序情况
             int i = 0;
-            while (i < 10) {
+            while (i < 3) {
                 int[] numbers = create(1000);
-                sort.sortMinToMax(numbers);
+                sort.sort(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
@@ -79,11 +64,11 @@ public class Run {
             }
         }
         {
-            //检测10000位长序列排序情况
+            //检测100000位长序列排序情况
             int i = 0;
             while (i < 3) {
                 int[] numbers = create(10000);
-                sort.sortMinToMax(numbers);
+                sort.sort(numbers);
                 boolean fg = check(numbers);
                 if (!fg) {
                     logger.error("排序不通过" + sort.getClass() + ":" + JSONObject.toJSONString(numbers));
