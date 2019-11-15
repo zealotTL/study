@@ -14,16 +14,19 @@ public class RadixSort extends AbsSort {
 
     @Override
     public void doSortMinToMax() {
-        List<List<Integer>> list = splitNumbers();
-        list.forEach(RadixSort::sort);
+        List<LinkedList<Integer>> list = splitNumbers();
+        for (int i = 0; i < list.size(); i++) {
+            sort(list.get(i), i);
+        }
     }
 
-    private static void sort(List<Integer> item) {
+    private static void sort(LinkedList<Integer> item, int bit) {
+        item.add(1);
 
     }
 
-    private List<List<Integer>> splitNumbers() {
-        List<List<Integer>> list = new ArrayList<>();
+    private List<LinkedList<Integer>> splitNumbers() {
+        List<LinkedList<Integer>> list = new ArrayList<>();
         int x = 0;
         while (x++ < bitLength) {
             list.add(new LinkedList<>());

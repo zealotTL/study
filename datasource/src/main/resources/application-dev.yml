@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://www.zealot.group/test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: zealot
     password: zealot
   redis:
-    host: 127.0.0.1
+    host: www.zealot.group
     port: 6379
     password: zealot
   activemq:
     user: zealot
     password: zealot
-    broker-url: tcp://127.0.0.1:61616
+    broker-url: tcp://www.zealot.group:61616
