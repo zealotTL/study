@@ -7,7 +7,7 @@ package group.zealot.study.algorithm.util;
 public class NumberUtil {
 
     /**
-     * 返回整数i第bit位上数字（bit =1，则返回个位上的数字）
+     * 返回整数i第bit位上数字（bit =1，则返回个位上的数字），若没有则默认为0
      *
      * @param i   目标整数
      * @param bit 比较第bit位
