@@ -23,10 +23,17 @@ public abstract class AbsSort implements Sort {
      * 空间位置移动次数
      */
     protected int exchangeNumber = 0;
+
+
     /**
      * 目标数组
      */
     protected int[] numbers = null;
+
+    public int[] getResult() {
+        return numbers;
+    }
+
     /**
      * 目标数组长度
      */
@@ -34,16 +41,18 @@ public abstract class AbsSort implements Sort {
 
 
     @Override
-    public void sortMinToMax(int[] numbers) {
+    public int[] sortMinToMax(int[] numbers) {
         this.numbers = numbers;
         length = this.numbers.length;
         logger.debug("原始：" + JSONObject.toJSONString(this.numbers));
 
         doSortMinToMax();
 
-        logger.debug("结果：" + JSONObject.toJSONString(this.numbers));
+        logger.debug("结果：" + JSONObject.toJSONString(getResult()));
         logger.debug("总比较次数：" + contrastNumber);
         logger.debug("总交换次数：" + exchangeNumber);
+
+        return getResult();
     }
 
     /**

@@ -1,58 +1,39 @@
 package group.zealot.study.algorithm.sort;
 
+import com.alibaba.fastjson.JSONObject;
 import group.zealot.study.algorithm.util.NumberUtil;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  * 基数排序
  */
+@Component
 public class RadixSort extends AbsSort {
-    private static final int bitLength = 10;
+    private static final int defult_length = 10;//0~9 10个数
+    private static final int bit_length = 10;
 
     @Override
     public void doSortMinToMax() {
-        List<LinkedList<Integer>> list = splitNumbers();
-        for (int i = 0; i < list.size(); i++) {
-            sort(list.get(i), i);
+        for (int bit = 1; bit <= bit_length; bit++) {
+            sortBit(bit);
         }
     }
 
-    private static void sort(LinkedList<Integer> item, int bit) {
-        item.add(1);
+    private void sortBit(int bit) {
+        int[] newNumber = new int[length];
 
+        int value = 0;
+        int index = 0;
+        while (value < defult_length) {
+            for (int i = 0; i < length; i++) {
+                if (value == NumberUtil.getBitValue(numbers[i], bit)) {
+                    newNumber[index] = numbers[i];
+                    index++;
+                }
+            }
+            value++;
+        }
+        numbers = newNumber;
     }
 
-    private List<LinkedList<Integer>> splitNumbers() {
-        List<LinkedList<Integer>> list = new ArrayList<>();
-        int x = 0;
-        while (x++ < bitLength) {
-            list.add(new LinkedList<>());
-        }
-        for (int i : numbers) {
-            List<Integer> item = list.get(NumberUtil.getLength(i));
-            item.add(i);
-        }
-        return list;
-    }
-
-    /**
-     * 比较i和j在第bit位上数字的大小，返回大元素
-     *
-     * @param i   i元素
-     * @param j   j元素
-     * @param bit 比较第bit位
-     */
-    private int contrastBitReturnMax(int i, int j, int bit) {
-        int iBit = NumberUtil.getBitValue(i, bit);
-        int jBit = NumberUtil.getBitValue(j, bit);
-        contrastNumber++;//比较次数增加
-        if (iBit < jBit) {
-            return j;
-        } else {
-            return i;
-        }
-    }
 }

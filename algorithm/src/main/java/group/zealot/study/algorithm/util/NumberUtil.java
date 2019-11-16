@@ -13,8 +13,14 @@ public class NumberUtil {
      * @param bit 比较第bit位
      */
     public static int getBitValue(int i, int bit) {
+        if (bit <= 0) {
+            throw new RuntimeException("bit 小于等于 0");
+        }
         String str = i + "";
-        return (int) str.charAt(str.length() - bit);
+        if (str.length() - bit < 0) {
+            return 0;
+        }
+        return str.charAt(str.length() - bit) - (int) '0'/*48*/;//ASCII码 0->48
     }
 
     public static int getLength(int i) {
