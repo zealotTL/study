@@ -5,7 +5,7 @@ package group.zealot.study.algorithm.search;
  */
 public interface Search {
     /**
-     * 查找数组numbers中，最大的元素numbers[maxPoint]，并返回下标maxPoint
+     * 查找key在数组numbers中的所有下标
      */
-    int searchMax(int[] numbers);
+    int[] searchKey(int[] numbers, int key);
 }

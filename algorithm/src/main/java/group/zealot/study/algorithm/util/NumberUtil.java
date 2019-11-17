@@ -1,10 +1,18 @@
 package group.zealot.study.algorithm.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import static group.zealot.study.algorithm.util.Utils.*;
+
 /**
  * @author zealotTL
  * @date 2019-11-14 17:18
  */
+@Component
 public class NumberUtil {
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 返回整数i第bit位上数字（bit =1，则返回个位上的数字），若没有则默认为0
@@ -12,7 +20,7 @@ public class NumberUtil {
      * @param i   目标整数
      * @param bit 比较第bit位
      */
-    public static int getBitValue(int i, int bit) {
+    public int getBitValue(int i, int bit) {
         if (bit <= 0) {
             throw new RuntimeException("bit 小于等于 0");
         }
@@ -23,7 +31,7 @@ public class NumberUtil {
         return str.charAt(str.length() - bit) - (int) '0'/*48*/;//ASCII码 0->48
     }
 
-    public static int getLength(int i) {
+    public int getLength(int i) {
         int length = 1;
         while ((i = i / 10) > 0) {
             length++;
@@ -31,7 +39,27 @@ public class NumberUtil {
         return length;
     }
 
-    public static int getLength2(int i) {
+    public int getLength2(int i) {
         return (i + "").length();
+    }
+
+    /**
+     * 返回一个随机数，数位长度为bit
+     *
+     * @param bit 随机数的长度位数
+     */
+    public int getRandom(int bit) {
+        return (int) (Math.random() * bit * 10);
+    }
+
+
+    /**
+     * 比较元素a和b（a == b，返回true）
+     *
+     * @param a 元素a
+     * @param b 元素b
+     */
+    public boolean contrast(int a, int b) {
+        return a == b;
     }
 }

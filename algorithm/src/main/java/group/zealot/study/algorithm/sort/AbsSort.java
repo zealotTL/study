@@ -1,10 +1,10 @@
 package group.zealot.study.algorithm.sort;
 
 import com.alibaba.fastjson.JSONObject;
-import group.zealot.study.algorithm.util.NumbersUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static group.zealot.study.algorithm.util.Utils.*;
 /**
  * 排序抽象类，集成通用方法功能
  *

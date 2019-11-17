@@ -1,13 +1,15 @@
 package group.zealot.study.algorithm;
 
-import group.zealot.study.algorithm.sort.RadixSort;
+import group.zealot.study.algorithm.search.BinarySearch;
+import group.zealot.study.algorithm.search.Search;
 import group.zealot.study.algorithm.sort.Sort;
-import group.zealot.study.algorithm.util.SortUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import static group.zealot.study.algorithm.util.Utils.*;
 
 /**
  * @author zealotTL
@@ -21,12 +23,17 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-        check(context.getBean(RadixSort.class));
+//        checkSort(context.getBean(RadixSort.class));
+        checkSearch(context.getBean(BinarySearch.class));
     }
 
-    public static void check(Sort sort) {
+    public static void checkSort(Sort sort) {
         //跳转log级别为DEBUG
         SortUtil.checkSort(sort);
+    }
+
+    public static void checkSearch(Search search) {
+        SearchUtil.checkSearch(search);
     }
 }
 

@@ -1,7 +1,6 @@
 package group.zealot.study.algorithm;
 
 import group.zealot.study.algorithm.sort.*;
-import group.zealot.study.algorithm.util.SortUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static group.zealot.study.algorithm.util.Utils.*;
 /**
  * @author zealot
  * @date 2019/11/16 12:05
@@ -20,7 +20,7 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(classes = {Run.class})
-public class CheckSort {
+public class SortCheck {
     @Autowired
     ApplicationContext context;
 

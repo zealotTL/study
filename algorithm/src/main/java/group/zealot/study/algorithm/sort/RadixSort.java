@@ -1,8 +1,8 @@
 package group.zealot.study.algorithm.sort;
 
-import group.zealot.study.algorithm.util.NumberUtil;
 import org.springframework.stereotype.Component;
 
+import static group.zealot.study.algorithm.util.Utils.*;
 /**
  * 基数排序
  */
