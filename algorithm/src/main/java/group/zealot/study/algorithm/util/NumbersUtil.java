@@ -46,13 +46,12 @@ public class NumbersUtil {
 
         int a = numbers[i];
         int b = numbers[j];
-        int max;
-        if (a >= b) {
-            max = i;
+
+        if (NumberUtil.contrastReturnMax(a, b) == a) {
+            return i;
         } else {
-            max = j;
+            return j;
         }
-        return max;
     }
 
     /**
@@ -63,7 +62,10 @@ public class NumbersUtil {
      * @param j       B元素的下标 B=numbers[j]
      */
     public boolean iGreaterJ(int[] numbers, int i, int j) {
-        return contrastReturnMax(numbers, i, j) == i;
+        if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
+            throw new RuntimeException("数组越界i:" + i + " j" + j + " numbers.length:" + numbers.length);
+        }
+        return NumberUtil.contrastReturnMax(numbers[i], numbers[j]) == numbers[i];
     }
 
     /**
@@ -141,7 +143,7 @@ public class NumbersUtil {
      */
     public void addValue(int[] numbers, int value) {
         for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] == numbers_defult_value) {
+            if (NumberUtil.contrast(numbers[i], numbers_defult_value)) {
                 numbers[i] = value;
                 return;
             }

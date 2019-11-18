@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import static group.zealot.study.algorithm.util.Utils.*;
 
-public abstract class AbsSearch implements Search {
+public abstract class AbsDefultSearch implements Search {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 

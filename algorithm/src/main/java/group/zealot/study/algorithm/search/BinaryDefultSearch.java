@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
  * 二分搜索
  */
 @Component
-public class BinarySearch extends AbsSearch {
+public class BinaryDefultSearch extends AbsDefultSearch {
 
     @Override
     protected void doSearchKey() {

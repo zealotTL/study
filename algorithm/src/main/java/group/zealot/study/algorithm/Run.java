@@ -1,6 +1,6 @@
 package group.zealot.study.algorithm;
 
-import group.zealot.study.algorithm.search.BinarySearch;
+import group.zealot.study.algorithm.search.BinaryDefultSearch;
 import group.zealot.study.algorithm.search.Search;
 import group.zealot.study.algorithm.sort.Sort;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class Run {
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
 //        checkSort(context.getBean(RadixSort.class));
-        checkSearch(context.getBean(BinarySearch.class));
+        checkSearch(context.getBean(BinaryDefultSearch.class));
     }
 
     public static void checkSort(Sort sort) {

@@ -2,9 +2,12 @@ package group.zealot.study.algorithm.util;
 
 import com.alibaba.fastjson.JSONObject;
 import group.zealot.study.algorithm.search.Search;
+import group.zealot.study.algorithm.sort.Sort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 import static group.zealot.study.algorithm.util.Utils.*;
 
@@ -13,6 +16,34 @@ public class SearchUtil {
 
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
+
+    public void checkSearchCareful(List<Search> list) {
+        list.forEach(search -> {
+            logger.info("开始检测" + search.getClass());
+            if (checkSearchCareful(search)) {
+                logger.info("检测通过:" + search.getClass());
+            }
+            logger.info("");
+        });
+    }
+
+    /**
+     * 多次检测搜索算法是否正确（随机生成长度1000的数组【随机数因子10】和2位数内的key）
+     */
+    public boolean checkSearchCareful(Search search) {
+        {
+            //检测10000位长序列排序情况
+            int i = 0;
+            while (i < 100) {
+                boolean fg = checkSearch(search, NumbersUtil.create(1000, 100), NumberUtil.getRandom(2));
+                if (!fg) {
+                    return false;
+                }
+                i++;
+            }
+        }
+        return true;
+    }
 
     /**
      * 简单检查搜索算法是否正确（随机生成长度1000的数组【随机数因子10】和2位数内的key）

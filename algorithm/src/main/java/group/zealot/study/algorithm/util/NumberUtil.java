@@ -62,4 +62,19 @@ public class NumberUtil {
     public boolean contrast(int a, int b) {
         return a == b;
     }
+
+    /**
+     * 比较元素a和b，返回大元素（a == b，返回a）
+     *
+     * @param a 元素a
+     * @param b 元素b
+     */
+    public int contrastReturnMax(int a, int b) {
+
+        if (a >= b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
 }
