@@ -151,6 +151,24 @@ public class NumbersUtil {
         throw new RuntimeException("numbers 越界" + JSONObject.toJSONString(numbers));
     }
 
+    public int getLength(int[] numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            if (NumberUtil.contrast(numbers[i], numbers_defult_value)) {
+                return i + 1;
+            }
+        }
+        throw new RuntimeException("numbers 越界" + JSONObject.toJSONString(numbers));
+    }
+
+    public void copy(int[] oldNumbers, int[] newNumbers) {
+        if (newNumbers.length <= oldNumbers.length) {
+            throw new RuntimeException("oldNumbers 长度大于 newNumbers");
+        }
+        for (int i = 0; i < oldNumbers.length; i++) {
+            newNumbers[i] = oldNumbers[i];
+        }
+    }
+
     /**
      * 剔除numbers数组中默认元素（默认第一个numbers_defult_value往后都是默认元素）
      * 如果全是默认元素，则返回null

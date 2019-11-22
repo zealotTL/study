@@ -1,56 +1,16 @@
 package group.zealot.study.algorithm.search;
 
-import com.alibaba.fastjson.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import static group.zealot.study.algorithm.util.Utils.NumberUtil;
+import static group.zealot.study.algorithm.util.Utils.NumbersUtil;
 
-public abstract class AbsTreeSearch implements Search {
+public abstract class AbsTreeSearch extends AbsDefultSearch {
 
-    protected Logger logger = LoggerFactory.getLogger(getClass());
-
-    /**
-     * 计算比较次数
-     */
-    protected int contrastNumber = 0;
-    /**
-     * 树根节点
-     */
-    protected Tree root;
-    /**
-     * 搜索key
-     */
-    protected int key = -1;
-    /**
-     * 结果集
-     */
-    protected int[] keyPoints = null;
-
-
-    @Override
-    public int[] searchKey(int[] numbers, int key) {
-        this.key = key;
-        logger.debug("key：" + key + " 原始：" + JSONObject.toJSONString(numbers));
-        this.root = preprocessNumbers(numbers);
-        logger.debug("预处理结束");
-
-        doSearchKey();
-
-        if (keyPoints != null) {
-            logger.debug("结果：keyPoints：" + JSONObject.toJSONString(keyPoints));
-        } else {
-            logger.debug("结果：keyPoints：无");
-        }
-
-        logger.debug("总比较次数：" + contrastNumber);
-        return keyPoints;
-    }
 
     /**
      * 各搜索算法的预处理机制
+     * 返回树形结构根节点
      */
-    abstract protected Tree preprocessNumbers(int[] numbers);
+    abstract protected Tree preprocessNumbers();
 
     /**
      * 配合各算法预处理机制
@@ -64,12 +24,13 @@ public abstract class AbsTreeSearch implements Search {
      * 简单树搜索算法
      */
     protected void doSearchKey() {
-        Tree father = root;
+        Tree father = preprocessNumbers();
 
         while (father != null) {
             Tree son = contrastTree(father);
             if (father.equals(son)) {
                 keyPoints = father.indexs;
+                return;
             } else {
                 father = son;
             }
@@ -78,9 +39,18 @@ public abstract class AbsTreeSearch implements Search {
     }
 
     abstract class Tree {
+        public static final int D = 10;
         protected int value;//值
-        protected int[] indexs;//原数组下标节点
+        protected int[] indexs;//相同值的原数组下标节点
+        private int indexsLength;
 
+        Tree(int value, int index) {
+            this.value = value;
+            this.indexs = new int[D];
+            NumbersUtil.initNumbers(this.indexs);
+            addIndex(index);
+            indexsLength = 1;
+        }
 
         /**
          * value 相等则返回true
@@ -94,6 +64,17 @@ public abstract class AbsTreeSearch implements Search {
                 }
             }
             return false;
+        }
+
+        public void addIndex(int index) {
+            if (indexsLength == indexs.length) {
+                int[] newIndexs = new int[indexsLength + D];
+                NumbersUtil.initNumbers(newIndexs);
+                NumbersUtil.copy(indexs, newIndexs);
+                indexs = newIndexs;
+            }
+            NumbersUtil.addValue(indexs, index);
+            indexsLength++;
         }
     }
 }

@@ -52,7 +52,6 @@ public class NumberUtil {
         return (int) (Math.random() * bit * 10);
     }
 
-
     /**
      * 比较元素a和b（a == b，返回true）
      *
@@ -64,17 +63,27 @@ public class NumberUtil {
     }
 
     /**
+     * 比较元素a和b，a >= b，返回true）
+     *
+     * @param a 元素a
+     * @param b 元素b
+     */
+    public boolean contrastMaxA(int a, int b) {
+        return a >= b;
+    }
+
+    /**
      * 比较元素a和b，返回大元素（a == b，返回a）
      *
      * @param a 元素a
      * @param b 元素b
      */
     public int contrastReturnMax(int a, int b) {
-
-        if (a >= b) {
+        if (contrastMaxA(a, b)) {
             return a;
         } else {
             return b;
         }
     }
+
 }
