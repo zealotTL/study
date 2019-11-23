@@ -41,6 +41,12 @@
             </roles>
         </developer>
     </developers>
+
+    <modules>
+        <module>dubbo</module>
+        <module>algorithm</module>
+        <module>datasource</module>
+    </modules>
  
 
     <dependencyManagement>
@@ -101,15 +107,6 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
                 <version>${shiro.version}</version>
-            </dependency>
-
-            <!-- Spring Boot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- Apache Dubbo  -->
