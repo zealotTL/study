@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "本表数据ID，自增")
+    @Column(unique = true)
     protected Integer id;
 
-    @Column(nullable = false, updatable = false, columnDefinition = "本条数据插入时间")
+    @Column(nullable = false, updatable = false)
     protected LocalDateTime insertTime;
-    @Column(columnDefinition = "本条数据最近更新时间")
+    @Column
     protected LocalDateTime updateTime;
-    @Column(insertable = false, columnDefinition = "true 表示已逻辑删除")
+    @Column(nullable = false, insertable = false, columnDefinition = "bit default 0")
     protected Boolean isDelete;
 
     @PrePersist

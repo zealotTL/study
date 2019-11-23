@@ -6,7 +6,7 @@
     <property name="log_console_pattern" value="%d{HH:mm:ss.SSS} %highlight(%-6.6level) %-15.15thread %cyan(%-60.60logger{60}) Line:%boldRed(%-3.3L) - %black(%msg) %n"/>
     <property name="log_fileNamePattern" value="log.%d{yyyy-MM-dd}.%i.log"/>
 
-    <property name="log_test_level" value="DEBUG"/>
+    <property name="log_test_level" value="INFO"/>
     <property name="log_dev_level" value="DEBUG"/>
 
     <!-- 开发环境 -->
