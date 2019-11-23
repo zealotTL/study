@@ -1,9 +1,7 @@
 package group.zealot.study.algorithm;
 
-import group.zealot.study.algorithm.search.BinaryDefultSearch;
-import group.zealot.study.algorithm.search.BinaryTreeSearch;
-import group.zealot.study.algorithm.search.Search;
-import group.zealot.study.algorithm.sort.Sort;
+import group.zealot.study.algorithm.search.*;
+import group.zealot.study.algorithm.sort.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
