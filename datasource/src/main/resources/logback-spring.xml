@@ -34,6 +34,15 @@
 
     <!-- 测试环境 -->
     <springProfile name="test">
+        <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${log_console_pattern}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+        </appender>
         <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <file>${log_path}/today.log</file>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -50,6 +59,7 @@
             </encoder>
         </appender>
         <root level="${log_test_level}">
+            <appender-ref ref="ConsoleAppender"/>
             <appender-ref ref="FileAppender"/>
         </root>
     </springProfile>

@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: dev
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8InnoDBDialect
+    hibernate:
+      ddl-auto: update
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
@@ -37,3 +42,6 @@ spring:
       max-connections: 5
       #空闲的连接过期时间，默认为30秒
       idle-timeout: 30s
+  jms:
+    cache:
+      session-cache-size: 5
