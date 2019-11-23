@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("dev")
 @SpringBootTest(classes = {Run.class})
-public class TestNameService {
+public class TestAgeService {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
