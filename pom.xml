@@ -8,6 +8,7 @@
         <java.version>1.8</java.version>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <springboot.version>2.1.1.RELEASE</springboot.version>
+        <springcloud-alibaba.version>2.1.1.RELEASE</springcloud-alibaba.version>
         <commons-io.version>2.5</commons-io.version>
         <fastjson.version>1.2.47</fastjson.version>
         <jackson-databind.version>2.9.5</jackson-databind.version>
@@ -46,8 +47,9 @@
         <module>dubbo</module>
         <module>algorithm</module>
         <module>datasource</module>
+        <module>springCloudAlibaba</module>
     </modules>
- 
+
 
     <dependencyManagement>
         <dependencies>
@@ -59,6 +61,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- spring-cloud-alibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${springcloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!--mybatis 时间类型适配jsr310-->
             <dependency>
                 <groupId>org.mybatis</groupId>

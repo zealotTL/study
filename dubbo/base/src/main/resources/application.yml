@@ -3,7 +3,7 @@ spring:
     active: dev
 dubbo:
   application:
-    registry: zookeeper://localhost:2181
+    registry: nacos://localhost:8848
   scan:
     base-packages: group.zealot.study.dubbo
   protocol:
