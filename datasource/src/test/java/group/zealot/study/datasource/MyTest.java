@@ -2,7 +2,6 @@ package group.zealot.study.datasource;
 
 import com.alibaba.fastjson.JSONObject;
 import group.zealot.study.datasource.jpa.User;
-import group.zealot.study.datasource.jpa.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ import java.util.List;
  * @date 2019/11/16 12:05
  */
 @RunWith(SpringRunner.class)
-@ActiveProfiles("test")
+@ActiveProfiles("dev")
 @SpringBootTest(classes = {Run.class})
 public class MyTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
