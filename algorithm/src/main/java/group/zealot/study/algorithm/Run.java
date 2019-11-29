@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.Arrays;
+
 import static group.zealot.study.algorithm.util.Utils.*;
 
 /**
@@ -22,13 +24,18 @@ public class Run {
 
     public static void main(String[] args) {
         context = SpringApplication.run(Run.class, args);
-//        checkSort(context.getBean(RadixSort.class));
-        checkSearch(context.getBean(BinaryTreeSearch.class));
+        checkSort(context.getBean(InsertSort.class),context.getBean(InertSort.class));
+//        checkSearch(context.getBean(BinaryTreeSearch.class));
     }
 
     public static void checkSort(Sort sort) {
         //跳转log级别为DEBUG
         SortUtil.checkSort(sort);
+    }
+
+    public static void checkSort(Sort... sorts) {
+        //跳转log级别为DEBUG
+        SortUtil.checkSort(Arrays.asList(sorts));
     }
 
     public static void checkSearch(Search search) {

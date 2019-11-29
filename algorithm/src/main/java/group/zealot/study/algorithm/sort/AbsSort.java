@@ -71,6 +71,18 @@ public abstract class AbsSort implements Sort {
     }
 
     /**
+     * 直接比较数字大小
+     *
+     * @param i
+     * @param j
+     * @return
+     */
+    protected boolean numIGreaterJ(int i, int j) {
+        ++contrastNumber;
+        return i>j;
+    }
+
+    /**
      * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
      *
      * @param i A元素的下标 A=numbers[i]

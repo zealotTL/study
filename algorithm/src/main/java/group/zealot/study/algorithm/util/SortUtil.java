@@ -74,6 +74,11 @@ public class SortUtil {
         return checkSort(sort, NumbersUtil.create(10));
     }
 
+    public void checkSort(List<Sort> sorts) {
+        int[] ints = NumbersUtil.create(10);
+        sorts.forEach(s -> checkSort(s,ints));
+    }
+
     public boolean checkSort(Sort sort, int[] numbers) {
         int[] result = sort.sortMinToMax(numbers);
         boolean fg = true;
