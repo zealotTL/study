@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: config-nacos
+nacos:
+  config:
+    server-addr: clw-zealot:58848
+#    file-extension: yaml
