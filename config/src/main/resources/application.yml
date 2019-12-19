@@ -1,9 +1,8 @@
 spring:
   profiles:
-    active: dev
-  application:
-    name: config-nacos
+    active: test
 nacos:
   config:
     server-addr: clw-zealot:58848
-#    file-extension: yaml
+    type: YAML
+    auto-refresh: true

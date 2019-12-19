@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "group.zealot")
 public class Run {
     public static ConfigurableApplicationContext context;
 

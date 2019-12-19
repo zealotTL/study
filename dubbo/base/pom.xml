@@ -79,13 +79,6 @@
                     <fork>true</fork>
                     <mainClass>group.zealot.study.dubbo.base.Run</mainClass>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>

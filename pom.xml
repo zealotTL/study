@@ -20,6 +20,7 @@
         <mybatis-jsr310.version>1.0.2</mybatis-jsr310.version>
         <dubbo.version>2.7.3</dubbo.version>
         <curator.version>4.2.0</curator.version>
+        <nacos-config.version>0.2.3</nacos-config.version>
     </properties>
 
     <groupId>group.zealot.study</groupId>
@@ -46,6 +47,7 @@
     <modules>
         <module>dubbo</module>
         <module>algorithm</module>
+        <module>config</module>
         <module>datasource</module>
         <module>springCloudAlibaba</module>
     </modules>
@@ -68,6 +70,12 @@
                 <version>${springcloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos-config.version}</version>
             </dependency>
 
             <!--mybatis 时间类型适配jsr310-->
