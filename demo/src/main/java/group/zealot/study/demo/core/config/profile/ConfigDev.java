@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Profile;
 
 @Profile("dev")
 @Configuration
-@NacosPropertySource(dataId = "config-demo-dev", autoRefreshed = true, type = ConfigType.YAML)
+@NacosPropertySource(dataId = "study-demo-dev", autoRefreshed = true, type = ConfigType.YAML)
 public class ConfigDev {
 }

@@ -1,9 +1,11 @@
 package group.zealot.study.demo.jpa;
 
 import group.zealot.study.demo.core.base.BaseEntity;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "tb_login_user")
 public class LoginUser extends BaseEntity {

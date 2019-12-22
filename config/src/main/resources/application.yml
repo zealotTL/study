@@ -1,8 +1,0 @@
-spring:
-  profiles:
-    active: test
-nacos:
-  config:
-    server-addr: clw-zealot:58848
-    type: YAML
-    auto-refresh: true

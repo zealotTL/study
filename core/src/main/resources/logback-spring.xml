@@ -61,7 +61,6 @@
             </encoder>
         </appender>
         <root level="${log_test_level}">
-            <appender-ref ref="ConsoleAppender"/>
             <appender-ref ref="FileAppender"/>
         </root>
     </springProfile>

@@ -1,7 +1,8 @@
-package group.zealot.study.datasource;
+package group.zealot.test.study;
 
 import com.alibaba.fastjson.JSONObject;
-import group.zealot.study.datasource.jpa.User;
+import group.zealot.study.Main;
+import group.zealot.study.demo.jpa.LoginUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @ActiveProfiles("dev")
-@SpringBootTest(classes = {Run.class})
+@SpringBootTest(classes = {Main.class})
 public class MyTest {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -76,26 +77,26 @@ public class MyTest {
     @Test
     public void studyJpa() {
         {
-            User item = new User();
+            LoginUser item = new LoginUser();
             item.setName(random());
             item.setEmail(item.getName() + "@qq.com");
             jpaRepository.save(item);
         }
 
         {
-            List<User> list = jpaRepository.findAll();
+            List<LoginUser> list = jpaRepository.findAll();
             list.forEach(user -> logger.info(JSONObject.toJSONString(user)));
 
         }
         {
-            User vo = new User();
+            LoginUser vo = new LoginUser();
             vo.setName("a");
 
             ExampleMatcher matcher = ExampleMatcher.matching()
                     .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains())//全部模糊查询，即%{address}%
                     .withIgnorePaths("email");//忽略字段，即不管password是什么值都不加入查询条件
 
-            List<User> list = jpaRepository.findAll(Example.of(vo, matcher));
+            List<LoginUser> list = jpaRepository.findAll(Example.of(vo, matcher));
             list.forEach(user -> {
                 logger.info(JSONObject.toJSONString(user));
                 user.setIsDelete(!user.getIsDelete());
