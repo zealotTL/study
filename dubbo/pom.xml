@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>group.zealot.study</groupId>
-        <artifactId>project</artifactId>
+        <groupId>group.zealot</groupId>
+        <artifactId>study</artifactId>
         <version>0.1</version>
     </parent>
 
-    <artifactId>dubbo</artifactId>
+    <artifactId>study-dubbo</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
 

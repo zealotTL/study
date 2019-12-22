@@ -27,6 +27,6 @@ public class TestNameService {
 
     @Test
     public void doNameService() {
-        logger.info("name: " + nameService.name());
+        logger.info("sftpname: " + nameService.name());
     }
 }

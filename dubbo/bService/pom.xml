@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>group.zealot.study</groupId>
-        <artifactId>dubbo</artifactId>
+        <groupId>group.zealot</groupId>
+        <artifactId>study-dubbo</artifactId>
         <version>0.1</version>
     </parent>
 
-    <artifactId>dubbo-bService</artifactId>
+    <artifactId>study-dubbo-bService</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
 

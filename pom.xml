@@ -4,6 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
+    <groupId>group.zealot</groupId>
+    <artifactId>study</artifactId>
+    <version>0.1</version>
+
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+
+    <description>你想发家致富么？</description>
+    <url>http://www.zealot.group</url>
+
     <properties>
         <java.version>1.8</java.version>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -21,18 +32,8 @@
         <dubbo.version>2.7.3</dubbo.version>
         <curator.version>4.2.0</curator.version>
         <nacos-config.version>0.2.3</nacos-config.version>
+        <rocketmq.version>4.4.0</rocketmq.version>
     </properties>
-
-    <groupId>group.zealot.study</groupId>
-    <artifactId>project</artifactId>
-    <version>0.1</version>
-
-    <name>${project.artifactId}</name>
-    <packaging>pom</packaging>
-
-    <description>你想发家致富么？</description>
-    <url>http://www.zealot.group</url>
-
     <developers>
         <developer>
             <id>zealotTL</id>
@@ -45,11 +46,10 @@
     </developers>
 
     <modules>
+        <module>core</module>
         <module>dubbo</module>
         <module>algorithm</module>
-        <module>config</module>
-        <module>datasource</module>
-        <module>springCloudAlibaba</module>
+        <module>demo</module>
     </modules>
 
 
@@ -108,12 +108,6 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <!-- mysql -->
             <dependency>
@@ -127,7 +121,6 @@
                 <artifactId>shiro-spring</artifactId>
                 <version>${shiro.version}</version>
             </dependency>
-
             <!-- Apache Dubbo  -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -145,20 +138,6 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.curator</groupId>
@@ -170,6 +149,19 @@
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
             </dependency>
+            <!--rocketmq-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-logappender</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
     <build>
@@ -195,5 +187,36 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <!--        资源打包-->
+        <!--<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>-->
+
+        <!--        打成jar-->
+        <!--<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.1.RELEASE</version>
+                <configuration>
+                    <fork>true</fork>
+                    &lt;!&ndash;                    <mainClass>group.zealot.studyy.abc.redis.Run</mainClass>&ndash;&gt;
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>-->
     </build>
 </project>

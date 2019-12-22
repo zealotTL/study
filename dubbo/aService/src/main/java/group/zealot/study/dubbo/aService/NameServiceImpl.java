@@ -8,7 +8,7 @@ import org.apache.dubbo.config.annotation.Service;
 public class NameServiceImpl extends BaseService implements NameService {
     @Override
     public String name() {
-        logger.info("调用 name() ");
+        logger.info("调用 sftpname() ");
         return "a service";
     }
 }
