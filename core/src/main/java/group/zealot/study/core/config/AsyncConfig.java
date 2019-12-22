@@ -10,10 +10,10 @@ import java.util.concurrent.Executor;
 @Configuration
 public class AsyncConfig {
     @Bean
-    public AsyncConfigurer asyncConfigurer(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+    public AsyncConfigurer asyncConfigurer() {
         return new AsyncConfigurer() {
             public Executor getAsyncExecutor() {
-                return threadPoolTaskExecutor;
+                return new ThreadPoolTaskExecutor();
             }
         };
     }
