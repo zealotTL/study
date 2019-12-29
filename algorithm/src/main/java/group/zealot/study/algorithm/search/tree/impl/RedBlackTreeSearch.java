@@ -1,7 +1,7 @@
 package group.zealot.study.algorithm.search.tree.impl;
 
 import group.zealot.study.algorithm.search.tree.AbsTreeSearch;
-import group.zealot.study.algorithm.search.tree.Tree;
+import group.zealot.study.algorithm.search.tree.AbsTree;
 
 /**
  * 红黑树
@@ -12,12 +12,12 @@ import group.zealot.study.algorithm.search.tree.Tree;
 public class RedBlackTreeSearch extends AbsTreeSearch {
 
     @Override
-    protected Tree transformToTree() {
+    protected AbsTree transformToTree() {
         return null;
     }
 
     @Override
-    protected Tree[] doSearchTree(Tree tree) {
+    protected AbsTree[] doSearchTree(AbsTree tree) {
         return null;
     }
 }

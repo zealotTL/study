@@ -23,7 +23,14 @@ public class SortUtil {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void checkSortCareful(List<Sort> list) {
+    /**
+     * 对算法进行详细检测
+     * 生成三组数据，分别长度位100,1000,10000
+     * 对算法组进行检测
+     *
+     * @param list 算法对象队列
+     */
+    public void checkCareful(List<Sort> list) {
         List<int[]> numbersList = new ArrayList<>();
         numbersList.add(NumbersUtil.create(100));
         numbersList.add(NumbersUtil.create(1000));
@@ -31,7 +38,7 @@ public class SortUtil {
         list.forEach(sort -> {
             long start = System.nanoTime();
             logger.info("开始检测" + sort.getClass());
-            if (checkSortCareful(sort, cloneNumbersList(numbersList))) {
+            if (checkCareful(sort, NumbersUtil.cloneNumbersList(numbersList))) {
                 logger.info("检测通过:" + sort.getClass());
             }
             long end = System.nanoTime();
@@ -39,13 +46,13 @@ public class SortUtil {
         });
     }
 
-    private List<int[]> cloneNumbersList(List<int[]> numbersList) {
-        List<int[]> cloneNumbersList = new ArrayList<>();
-        numbersList.forEach(numbers -> cloneNumbersList.add(numbers.clone()));
-        return cloneNumbersList;
-    }
-
-    public boolean checkSortCareful(Sort sort, List<int[]> numbersList) {
+    /**
+     * 用多组数据对算法进行检测
+     *
+     * @param sort        算法对象
+     * @param numbersList 目标数组队列
+     */
+    private boolean checkCareful(Sort sort, List<int[]> numbersList) {
         try {
             numbersList.forEach(numbers -> {
                 //检测100位短序列排序情况
@@ -53,7 +60,7 @@ public class SortUtil {
                 int length = numbers.length;
                 int times = length <= 100 ? 100 : length <= 1000 ? 10 : 3;
                 while (i < times) {
-                    boolean fg = checkSort(sort, numbers);
+                    boolean fg = check(sort, numbers);
                     if (!fg) {
                         throw new RuntimeException("测试不通过，中断测试");
                     }
@@ -66,12 +73,17 @@ public class SortUtil {
         return true;
     }
 
-    public void checkSort(List<Sort> list) {
-        int[] numbers = NumbersUtil.create(10);
+    /**
+     * 简单检查搜索算法是否正确（随机生成长度1000的数组）
+     *
+     * @param list 算法对象组
+     */
+    public void check(List<Sort> list) {
+        int[] numbers = NumbersUtil.create(1000);
         list.forEach(sort -> {
             long start = System.nanoTime();
             logger.info("开始检测" + sort.getClass());
-            if (checkSort(sort, numbers.clone())) {
+            if (check(sort, numbers.clone())) {
                 logger.info("检测通过:" + sort.getClass());
             }
             long end = System.nanoTime();
@@ -79,7 +91,13 @@ public class SortUtil {
         });
     }
 
-    public boolean checkSort(Sort sort, int[] numbers) {
+    /**
+     * 简单检查搜索算法是否正确（随机生成长度1000的数组）
+     *
+     * @param sort    算法对象
+     * @param numbers 目标数组
+     */
+    private boolean check(Sort sort, int[] numbers) {
         int[] result = sort.sortMinToMax(numbers);
         boolean fg = true;
         for (int i = 0; i < result.length - 1; i++) {

@@ -1,7 +1,7 @@
 package group.zealot.study.algorithm.search.tree.impl;
 
 import group.zealot.study.algorithm.search.tree.AbsTreeSearch;
-import group.zealot.study.algorithm.search.tree.Tree;
+import group.zealot.study.algorithm.search.tree.AbsTree;
 import org.springframework.stereotype.Component;
 
 
@@ -40,7 +40,7 @@ public class BinaryTreeSearch extends AbsTreeSearch {
 
 
     @Override
-    protected Tree[] doSearchTree(Tree tree) {
+    protected AbsTree[] doSearchTree(AbsTree tree) {
         if (compareValue(tree.getValue(), key)) {
             return returnTree(tree);
         } else if (compareValue(tree.getValue(), key)) {
@@ -50,18 +50,23 @@ public class BinaryTreeSearch extends AbsTreeSearch {
         }
     }
 
-    private Tree[] returnTree(Tree tree) {
-        Tree[] trees = new Tree[1];
+    private AbsTree[] returnTree(AbsTree tree) {
+        AbsTree[] trees = new AbsTree[1];
         trees[0] = tree;
         return trees;
     }
 
-    class BinaryTree extends Tree {
+    class BinaryTree extends AbsTree {
         BinaryTree left;//小于 value
         BinaryTree right;//大于 value
 
         BinaryTree(int value, int index) {
             super(value, index);
+        }
+
+        @Override
+        public void print() {
+            //todo 尚未完成打印树形结构功能
         }
     }
 }

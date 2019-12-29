@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import static group.zealot.study.algorithm.util.NumbersUtil.NUMBERS_DEFULT_VALUE;
 import static group.zealot.study.algorithm.util.Utils.*;
 
-public abstract class AbsDefultSearch implements Search {
+public abstract class AbsSearch implements Search {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -42,7 +42,7 @@ public abstract class AbsDefultSearch implements Search {
         length = this.numbers.length;
         logger.debug("key：" + key + " 原始：" + JSONObject.toJSONString(this.numbers));
 
-        keyPoints = new int[length];
+        keyPoints = new int[10];
         NumbersUtil.initNumbers(keyPoints);//初始化数组元素
         doSearchKey();
         keyPoints = NumbersUtil.clean(keyPoints);//清理默认元素

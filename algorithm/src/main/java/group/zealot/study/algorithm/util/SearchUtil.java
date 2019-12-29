@@ -6,49 +6,74 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static group.zealot.study.algorithm.util.Utils.*;
 
 @Component
 public class SearchUtil {
-
-
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void checkSearchCareful(List<Search> list) {
-        list.forEach(search -> {
-            logger.info("开始检测" + search.getClass());
-            if (checkSearchCareful(search)) {
-                logger.info("检测通过:" + search.getClass());
+    /**
+     * 对算法进行详细检测
+     * 生成三组数据，分别长度位100,1000,10000；key是2位以内的数
+     * 对算法组进行检测
+     *
+     * @param list 算法对象队列
+     */
+    public void checkCareful(List<Search> list) {
+        List<int[]> numbersList = new ArrayList<>();
+        numbersList.add(NumbersUtil.create(100));
+        numbersList.add(NumbersUtil.create(1000));
+        numbersList.add(NumbersUtil.create(10000));
+        int key = NumberUtil.getRandom(2);
+        list.forEach(sort -> {
+            long start = System.nanoTime();
+            logger.info("开始检测" + sort.getClass());
+            if (checkCareful(sort, NumbersUtil.cloneNumbersList(numbersList), key)) {
+                logger.info("检测通过:" + sort.getClass());
             }
-            logger.info("");
+            long end = System.nanoTime();
+            logger.info("cost :" + (end - start));
         });
     }
 
     /**
-     * 多次检测搜索算法是否正确（随机生成长度1000的数组【随机数因子10】和2位数内的key）
+     * 用多组数据对算法进行检测
+     *
+     * @param search        算法对象
+     * @param numbersList 目标数组队列
+     * @param key         key
      */
-    public boolean checkSearchCareful(Search search) {
-        {
-            //检测10000位长序列排序情况
-            int i = 0;
-            while (i < 100) {
-                boolean fg = checkSearch(search, NumbersUtil.create(1000, 100), NumberUtil.getRandom(2));
-                if (!fg) {
-                    return false;
+    private boolean checkCareful(Search search, List<int[]> numbersList, int key) {
+        try {
+            numbersList.forEach(numbers -> {
+                //检测100位短序列排序情况
+                int i = 0;
+                int length = numbers.length;
+                int times = length <= 100 ? 100 : length <= 1000 ? 10 : 3;
+                while (i < times) {
+                    boolean fg = check(search, numbers, key);
+                    if (!fg) {
+                        throw new RuntimeException("测试不通过，中断测试");
+                    }
+                    i++;
                 }
-                i++;
-            }
+            });
+        } catch (RuntimeException e) {
+            return false;
         }
         return true;
     }
 
     /**
      * 简单检查搜索算法是否正确（随机生成长度1000的数组【随机数因子10】和2位数内的key）
+     *
+     * @param search 算法对象
      */
-    public boolean checkSearch(Search search) {
-        return checkSearch(search, NumbersUtil.create(1000, 100), NumberUtil.getRandom(2));
+    public boolean check(Search search) {
+        return check(search, NumbersUtil.create(1000, 100), NumberUtil.getRandom(2));
     }
 
     /**
@@ -58,7 +83,7 @@ public class SearchUtil {
      * @param numbers 目标数组
      * @param key     key
      */
-    public boolean checkSearch(Search search, int[] numbers, int key) {
+    private boolean check(Search search, int[] numbers, int key) {
         int[] keyPoints = search.searchKey(numbers, key);
         int[] ans = keyPoints(numbers, key);
         boolean fg = NumbersUtil.contrastNumbers(ans, keyPoints);

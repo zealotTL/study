@@ -38,7 +38,7 @@ public class SortCheck {
     @Test
     public void checkCareful() {
         Map<String, Sort> map = context.getBeansOfType(Sort.class);
-        SortUtil.checkSortCareful(new ArrayList<>(map.values()));
+        SortUtil.checkCareful(new ArrayList<>(map.values()));
     }
 
     /**
@@ -56,7 +56,7 @@ public class SortCheck {
         sortList.add(context.getBean(InsertSort.class));
         sortList.add(context.getBean(InsertSort.class));
         sortList.add(context.getBean(InsertSort.class));
-        SortUtil.checkSort(sortList);
+        SortUtil.check(sortList);
     }
 
 }

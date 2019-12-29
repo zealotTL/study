@@ -8,13 +8,13 @@ import static group.zealot.study.algorithm.util.Utils.NumbersUtil;
  * @author zealotTL
  * @date 2019-12-29 11:39
  */
-public abstract class Tree {
+public abstract class AbsTree {
     @Getter
     private int value;//值
     @Getter
     private int[] indexs;//相同值的原数组下标节点
 
-    public Tree(int value, int index) {
+    public AbsTree(int value, int index) {
         this.value = value;
         this.indexs = new int[10];
         NumbersUtil.initNumbers(this.indexs);
@@ -24,4 +24,10 @@ public abstract class Tree {
     public void addIndex(int index) {
         indexs = NumbersUtil.addValue(indexs, index);
     }
+
+    /**
+     * 打印树的结构
+     */
+    public abstract void print();
+
 }

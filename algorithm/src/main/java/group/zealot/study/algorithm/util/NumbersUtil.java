@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * int数组操作类
@@ -169,5 +172,11 @@ public class NumbersUtil {
             result[i] = numbers[i];
         }
         return result;
+    }
+
+    public List<int[]> cloneNumbersList(List<int[]> numbersList) {
+        List<int[]> cloneNumbersList = new ArrayList<>();
+        numbersList.forEach(numbers -> cloneNumbersList.add(numbers.clone()));
+        return cloneNumbersList;
     }
 }

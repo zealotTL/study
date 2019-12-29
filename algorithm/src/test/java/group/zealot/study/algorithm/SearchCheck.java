@@ -37,6 +37,6 @@ public class SearchCheck {
     public void checkCareful() {
         Map<String, Search> map = context.getBeansOfType(Search.class);
         //跳转log级别为INFO
-        SearchUtil.checkSearchCareful(new ArrayList<>(map.values()));
+        SearchUtil.checkCareful(new ArrayList<>(map.values()));
     }
 }
