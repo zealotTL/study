@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import static group.zealot.study.algorithm.util.Utils.*;
-
 /**
  * @author zealotTL
  * @date 2019-11-14 17:18
@@ -52,38 +50,21 @@ public class NumberUtil {
         return (int) (Math.random() * bit * 10);
     }
 
-    /**
-     * 比较元素a和b（a == b，返回true）
-     *
-     * @param a 元素a
-     * @param b 元素b
-     */
-    public boolean contrast(int a, int b) {
-        return a == b;
-    }
 
     /**
-     * 比较元素a和b，a >= b，返回true）
+     * F
+     * 直接比较元素a和b，a >= b，返回true
      *
-     * @param a 元素a
-     * @param b 元素b
+     * @param a A元素
+     * @param b B元素
      */
-    public boolean contrastMaxA(int a, int b) {
-        return a >= b;
-    }
-
-    /**
-     * 比较元素a和b，返回大元素（a == b，返回a）
-     *
-     * @param a 元素a
-     * @param b 元素b
-     */
-    public int contrastReturnMax(int a, int b) {
-        if (contrastMaxA(a, b)) {
-            return a;
+    public int compare(int a, int b) {
+        if (a > b) {
+            return 1;
+        } else if (a == b) {
+            return 0;
         } else {
-            return b;
+            return -1;
         }
     }
-
 }

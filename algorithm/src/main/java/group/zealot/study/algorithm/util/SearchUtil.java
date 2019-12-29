@@ -86,12 +86,12 @@ public class SearchUtil {
      * @param numbers 目标数组
      * @param key     key
      */
-    public int[] keyPoints(int[] numbers, int key) {
-        int[] keyPoints = new int[numbers.length];
+    private int[] keyPoints(int[] numbers, int key) {
+        int[] keyPoints = new int[10];
         NumbersUtil.initNumbers(keyPoints);
         for (int i = 0; i < numbers.length; i++) {
-            if (NumberUtil.contrast(numbers[i], key)) {
-                NumbersUtil.addValue(keyPoints, i);
+            if (numbers[i] == key) {
+                keyPoints = NumbersUtil.addValue(keyPoints, i);
             }
         }
         keyPoints = NumbersUtil.clean(keyPoints);

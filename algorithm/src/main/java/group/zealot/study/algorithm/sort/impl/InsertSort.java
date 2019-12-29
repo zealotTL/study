@@ -17,4 +17,13 @@ public class InsertSort extends AbsSort {
             logNumbers(i);
         }
     }
+
+    private boolean numIGreaterJ(int a, int b) {
+        contrastNumber++;
+        if (a >= b) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

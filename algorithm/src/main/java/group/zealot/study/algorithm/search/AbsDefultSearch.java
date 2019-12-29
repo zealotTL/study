@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static group.zealot.study.algorithm.util.NumbersUtil.NUMBERS_DEFULT_VALUE;
 import static group.zealot.study.algorithm.util.Utils.*;
 
 public abstract class AbsDefultSearch implements Search {
@@ -34,6 +35,8 @@ public abstract class AbsDefultSearch implements Search {
 
     @Override
     public int[] searchKey(int[] numbers, int key) {
+        verification(numbers, key);
+
         this.numbers = numbers;
         this.key = key;
         length = this.numbers.length;
@@ -53,6 +56,15 @@ public abstract class AbsDefultSearch implements Search {
         return keyPoints;
     }
 
+    private void verification(int[] numbers, int key) {
+        if (numbers == null || numbers.length == 0) {
+            throw new RuntimeException("传入数组数据不合法");
+        }
+        if (key == NUMBERS_DEFULT_VALUE) {
+            throw new RuntimeException("传入key不允许");
+        }
+    }
+
     /**
      * 各搜索算法的核心
      */
@@ -63,13 +75,23 @@ public abstract class AbsDefultSearch implements Search {
      *
      * @param i A元素的下标 A=numbers[i]
      */
-    protected boolean contrastKey(int i) {
+    protected boolean compareKey(int i) {
         contrastNumber++;
-        return NumberUtil.contrast(numbers[i], key);
+        return NumberUtil.compare(numbers[i], key) == 0;
     }
 
+    protected boolean compareValue(int a, int b) {
+        contrastNumber++;
+        return NumberUtil.compare(a, b) == 0;
+    }
+
+    /**
+     * 将下标添加到 数组keyPoints中
+     *
+     * @param keyPoint 符合条件的下标
+     */
     protected void addKeyPoint(int keyPoint) {
-        NumbersUtil.addValue(keyPoints, keyPoint);
+        keyPoints = NumbersUtil.addValue(keyPoints, keyPoint);
     }
 
 }

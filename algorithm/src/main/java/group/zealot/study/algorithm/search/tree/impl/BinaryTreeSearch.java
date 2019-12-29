@@ -1,8 +1,9 @@
-package group.zealot.study.algorithm.search.impl.tree;
+package group.zealot.study.algorithm.search.tree.impl;
 
+import group.zealot.study.algorithm.search.tree.AbsTreeSearch;
+import group.zealot.study.algorithm.search.tree.Tree;
 import org.springframework.stereotype.Component;
 
-import static group.zealot.study.algorithm.util.Utils.NumberUtil;
 
 /**
  * 二叉树搜索
@@ -11,7 +12,7 @@ import static group.zealot.study.algorithm.util.Utils.NumberUtil;
 public class BinaryTreeSearch extends AbsTreeSearch {
 
     @Override
-    protected BinaryTree preprocessNumbers() {
+    protected BinaryTree transformToTree() {
         BinaryTree root = new BinaryTree(numbers[0], 0);
         for (int i = 1; i < numbers.length; i++) {
             treeAddValue(root, i, numbers[i]);
@@ -20,9 +21,9 @@ public class BinaryTreeSearch extends AbsTreeSearch {
     }
 
     private void treeAddValue(BinaryTree tree, int index, int value) {
-        if (NumberUtil.contrast(tree.value, value)) {
+        if (compareValue(tree.getValue(), value)) {
             tree.addIndex(index);
-        } else if (NumberUtil.contrastMaxA(tree.value, value)) {
+        } else if (compareValue(tree.getValue(), value)) {
             if (tree.left == null) {
                 tree.left = new BinaryTree(value, index);
             } else {
@@ -39,14 +40,20 @@ public class BinaryTreeSearch extends AbsTreeSearch {
 
 
     @Override
-    protected Tree contrastTree(Tree tree) {
-        if (NumberUtil.contrast(tree.value, key)) {
-            return tree;
-        } else if (NumberUtil.contrastMaxA(tree.value, key)) {
-            return ((BinaryTree) tree).left;
+    protected Tree[] doSearchTree(Tree tree) {
+        if (compareValue(tree.getValue(), key)) {
+            return returnTree(tree);
+        } else if (compareValue(tree.getValue(), key)) {
+            return returnTree(((BinaryTree) tree).left);
         } else {
-            return ((BinaryTree) tree).right;
+            return returnTree(((BinaryTree) tree).right);
         }
+    }
+
+    private Tree[] returnTree(Tree tree) {
+        Tree[] trees = new Tree[1];
+        trees[0] = tree;
+        return trees;
     }
 
     class BinaryTree extends Tree {

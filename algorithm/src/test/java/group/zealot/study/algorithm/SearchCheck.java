@@ -1,7 +1,9 @@
 package group.zealot.study.algorithm;
 
+import ch.qos.logback.classic.Level;
 import group.zealot.study.algorithm.search.Search;
 import group.zealot.study.algorithm.sort.Sort;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ import static group.zealot.study.algorithm.util.Utils.SortUtil;
 public class SearchCheck {
     @Autowired
     ApplicationContext context;
+
+    @Before
+    public void setLevel() {
+        Run.setLogLevel(Level.INFO);// checkCareful()打开
+    }
 
     @Test
     public void checkCareful() {

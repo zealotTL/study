@@ -5,6 +5,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import group.zealot.study.algorithm.sort.*;
 import group.zealot.study.algorithm.sort.impl.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,14 @@ public class SortCheck {
     @Autowired
     ApplicationContext context;
 
+    @Before
+    public void setLogLevel() {
+        Run.setLogLevel(Level.INFO);// checkCareful()打开
+//        Run.setLogLevel(Level.TRACE);// contrast()打开
+    }
+
     @Test
     public void checkCareful() {
-        setLogLevel(Level.INFO);
         Map<String, Sort> map = context.getBeansOfType(Sort.class);
         SortUtil.checkSortCareful(new ArrayList<>(map.values()));
     }
@@ -43,7 +49,6 @@ public class SortCheck {
      */
     @Test
     public void contrast() {
-        setLogLevel(Level.TRACE);
         List<Sort> sortList = new ArrayList<>();
         sortList.add(context.getBean(InertSort.class));
         sortList.add(context.getBean(InertSort.class));
@@ -57,9 +62,4 @@ public class SortCheck {
         SortUtil.checkSort(sortList);
     }
 
-    private void setLogLevel(Level level) {
-        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-        Logger logger = loggerContext.getLogger("group.zealot");
-        logger.setLevel(level);
-    }
 }

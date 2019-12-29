@@ -30,7 +30,7 @@ public class BinaryDefultSearch extends AbsDefultSearch {
     private void doBinarySearch(int start, int end) {
         if (start > end) {//无需处理
         } else if (start == end) {
-            if (contrastKey(start)) {
+            if (compareKey(start)) {
                 addKeyPoint(start);
             }
         } else {

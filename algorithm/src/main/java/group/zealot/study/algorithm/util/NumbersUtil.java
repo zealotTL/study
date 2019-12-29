@@ -5,15 +5,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import static group.zealot.study.algorithm.util.Utils.*;
 
 /**
+ * int数组操作类
+ * 1、默认元素值为 NUMBERS_DEFULT_VALUE
+ * 2、方法功能的实现，均排除默认元素
+ * 3、自动扩容
+ *
  * @author zealotTL
  * @date 2019-11-14 09:13
  */
 @Component
 public class NumbersUtil {
-    private static final int numbers_defult_value = Integer.MIN_VALUE;
+    public static final int NUMBERS_DEFULT_VALUE = Integer.MIN_VALUE;
+    private static final int D = 10;//数组扩容时，每次增加的长度
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,42 +35,6 @@ public class NumbersUtil {
             numbers[i] = (int) (Math.random() * random);
         }
         return numbers;
-    }
-
-    /**
-     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，返回最大的元素（若A==B，则返回i）
-     *
-     * @param numbers 目标数组
-     * @param i       A元素的下标 A=numbers[i]
-     * @param j       B元素的下标 B=numbers[j]
-     */
-    public int contrastReturnMax(int[] numbers, int i, int j) {
-        if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
-            throw new RuntimeException("数组越界i:" + i + " j" + j + " numbers.length:" + numbers.length);
-        }
-
-        int a = numbers[i];
-        int b = numbers[j];
-
-        if (NumberUtil.contrastReturnMax(a, b) == a) {
-            return i;
-        } else {
-            return j;
-        }
-    }
-
-    /**
-     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
-     *
-     * @param numbers 目标数组
-     * @param i       A元素的下标 A=numbers[i]
-     * @param j       B元素的下标 B=numbers[j]
-     */
-    public boolean iGreaterJ(int[] numbers, int i, int j) {
-        if (i > numbers.length || j > numbers.length || i < 0 || j < 0) {
-            throw new RuntimeException("数组越界i:" + i + " j" + j + " numbers.length:" + numbers.length);
-        }
-        return NumberUtil.contrastReturnMax(numbers[i], numbers[j]) == numbers[i];
     }
 
     /**
@@ -112,7 +81,7 @@ public class NumbersUtil {
         for (int b : B) {
             boolean fg = false;
             for (int a : A) {
-                if (NumberUtil.contrast(b, a)) {
+                if (a == b) {
                     fg = true;
                     break;
                 }
@@ -127,58 +96,67 @@ public class NumbersUtil {
 
 
     /**
-     * 初始化结果集（内容赋值key_points_defult_value）
+     * 初始化结果集
      */
     public void initNumbers(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = numbers_defult_value;
+            numbers[i] = NUMBERS_DEFULT_VALUE;
         }
     }
 
     /**
-     * 添加符合条件的下标进结果集
+     * 添加元素至数组尾部
      *
-     * @param numbers 结果集数组
-     * @param value   待添加的keyPoint
+     * @param numbers 数组
+     * @param value   元素
      */
-    public void addValue(int[] numbers, int value) {
-        for (int i = 0; i < numbers.length; i++) {
-            if (NumberUtil.contrast(numbers[i], numbers_defult_value)) {
-                numbers[i] = value;
-                return;
-            }
+    public int[] addValue(int[] numbers, int value) {
+        int length = getLength(numbers);
+        if (length == numbers.length) {
+            numbers = dilatation(numbers);
         }
-        throw new RuntimeException("numbers 越界" + JSONObject.toJSONString(numbers));
+        numbers[length] = value;
+        return numbers;
     }
 
     public int getLength(int[] numbers) {
-        for (int i = 0; i < numbers.length; i++) {
-            if (NumberUtil.contrast(numbers[i], numbers_defult_value)) {
-                return i + 1;
+        int i = 0;
+        for (int item : numbers) {
+            i++;
+            if (item == NUMBERS_DEFULT_VALUE) {
+                break;
             }
         }
-        throw new RuntimeException("numbers 越界" + JSONObject.toJSONString(numbers));
+        return i;
     }
 
-    public void copy(int[] oldNumbers, int[] newNumbers) {
-        if (newNumbers.length <= oldNumbers.length) {
-            throw new RuntimeException("oldNumbers 长度大于 newNumbers");
+    public boolean isFull(int[] numbers) {
+        for (int item : numbers) {
+            if (item == NUMBERS_DEFULT_VALUE) {
+                return false;
+            }
         }
+        return true;
+    }
+
+    private int[] dilatation(int[] oldNumbers) {
+        int[] newNumbers = new int[oldNumbers.length + D];
+        System.arraycopy(oldNumbers, 0, newNumbers, 0, oldNumbers.length);
         for (int i = 0; i < oldNumbers.length; i++) {
             newNumbers[i] = oldNumbers[i];
         }
+        return newNumbers;
     }
 
     /**
-     * 剔除numbers数组中默认元素（默认第一个numbers_defult_value往后都是默认元素）
-     * 如果全是默认元素，则返回null
+     * 返回一个新数组或null，只存在有用元素（去除默认元素）
      *
      * @param numbers 目标数组
      */
     public int[] clean(int[] numbers) {
         int end = numbers.length - 1;
         for (int i = 0; i < numbers.length; i++) {
-            if (NumberUtil.contrast(numbers[i], numbers_defult_value)) {
+            if (numbers[i] == NUMBERS_DEFULT_VALUE) {
                 end = i;
                 break;
             }
