@@ -1,5 +1,6 @@
-package group.zealot.study.algorithm.sort;
+package group.zealot.study.algorithm.sort.impl;
 
+import group.zealot.study.algorithm.sort.AbsSort;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,15 +29,15 @@ public class InertSort extends AbsSort {
      * @param p   待排序元素numbers[p]
      */
     private void contrastAndInsert(int start, int end, int p) {
-        for (int i = start; i <= end - 1; i++) {
-            //numbers[i] <= numbers[p] <= numbers[i+1]
-            if (iGreaterJ(p, i) && iGreaterJ(i + 1, p)) {
-                insert(i + 1, end, p);
-                break;
-            }
-        }
-        if (iGreaterJ(start, p)) {
+        if (iGreaterJ(start, p)) {//number[p] <= number[i]
             insert(start, end, p);
+        } else {
+            for (int i = start; i <= end - 1; i++) {
+                if (iGreaterJ(i + 1, p)) {//numbers[i] <= numbers[p] <= numbers[i+1]
+                    insert(i + 1, end, p);
+                    break;
+                }
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package group.zealot.study.algorithm.search;
+package group.zealot.study.algorithm.search.impl.tree;
 
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,6 @@
-package group.zealot.study.algorithm.search;
+package group.zealot.study.algorithm.search.impl;
 
+import group.zealot.study.algorithm.search.AbsDefultSearch;
 import org.springframework.stereotype.Component;
 
 /**

@@ -69,14 +69,8 @@ public class SortUtil {
         return true;
     }
 
-
     public boolean checkSort(Sort sort) {
         return checkSort(sort, NumbersUtil.create(10));
-    }
-
-    public void checkSort(List<Sort> sorts) {
-        int[] ints = NumbersUtil.create(10);
-        sorts.forEach(s -> checkSort(s,ints));
     }
 
     public boolean checkSort(Sort sort, int[] numbers) {

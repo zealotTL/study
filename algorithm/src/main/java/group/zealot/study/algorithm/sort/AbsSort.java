@@ -1,10 +1,12 @@
 package group.zealot.study.algorithm.sort;
 
 import com.alibaba.fastjson.JSONObject;
+import group.zealot.study.algorithm.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static group.zealot.study.algorithm.util.Utils.*;
+
 /**
  * 排序抽象类，集成通用方法功能
  *
@@ -42,6 +44,8 @@ public abstract class AbsSort implements Sort {
 
     @Override
     public int[] sortMinToMax(int[] numbers) {
+        verification(numbers);
+
         this.numbers = numbers;
         length = this.numbers.length;
         logger.debug("原始：" + JSONObject.toJSONString(this.numbers));
@@ -55,13 +59,19 @@ public abstract class AbsSort implements Sort {
         return getResult();
     }
 
+    private void verification(int[] numbers) {
+        if (numbers == null || numbers.length == 0) {
+            throw new RuntimeException("传入数组数据不合法");
+        }
+    }
+
     /**
      * 各排序算法的核心
      */
     abstract public void doSortMinToMax();
 
     /**
-     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A > B 则返回true（若A==B，则返回true）
+     * 此方法比较A(numbers[i])、B(numbers[j])两个元素，A >= B 则返回true
      *
      * @param i A元素的下标 A=numbers[i]
      * @param j B元素的下标 B=numbers[j]
@@ -71,15 +81,14 @@ public abstract class AbsSort implements Sort {
     }
 
     /**
-     * 直接比较数字大小
+     * 直接比较元素a和b，a >= b，返回true
      *
-     * @param i
-     * @param j
-     * @return
+     * @param a A元素（number[i]）
+     * @param b B元素（number[j]）
      */
-    protected boolean numIGreaterJ(int i, int j) {
+    protected boolean numIGreaterJ(int a, int b) {
         ++contrastNumber;
-        return i>j;
+        return Utils.NumberUtil.contrastMaxA(a, b);
     }
 
     /**
@@ -109,6 +118,6 @@ public abstract class AbsSort implements Sort {
      * 打印当前数组
      */
     protected void logNumbers(int num) {
-        logger.debug(num + "次：" + JSONObject.toJSONString(numbers));
+        logger.trace(num + "次：" + JSONObject.toJSONString(numbers));
     }
 }

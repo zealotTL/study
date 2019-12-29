@@ -1,4 +1,6 @@
-package group.zealot.study.algorithm.search;
+package group.zealot.study.algorithm.search.impl.tree;
+
+import group.zealot.study.algorithm.search.AbsDefultSearch;
 
 import static group.zealot.study.algorithm.util.Utils.NumberUtil;
 import static group.zealot.study.algorithm.util.Utils.NumbersUtil;
@@ -38,7 +40,7 @@ public abstract class AbsTreeSearch extends AbsDefultSearch {
 
     }
 
-    abstract class Tree {
+    class Tree {
         public static final int D = 10;
         protected int value;//值
         protected int[] indexs;//相同值的原数组下标节点

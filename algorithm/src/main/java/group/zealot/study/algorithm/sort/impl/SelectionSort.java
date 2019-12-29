@@ -1,5 +1,6 @@
-package group.zealot.study.algorithm.sort;
+package group.zealot.study.algorithm.sort.impl;
 
+import group.zealot.study.algorithm.sort.AbsSort;
 import org.springframework.stereotype.Component;
 
 /**
