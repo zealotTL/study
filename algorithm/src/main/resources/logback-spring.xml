@@ -56,12 +56,12 @@
                 <pattern>${log_console_pattern}</pattern>
                 <charset>UTF-8</charset>
             </encoder>
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>DEBUG</level>
-            </filter>
+            <!--            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--                <level>DEBUG</level>-->
+            <!--            </filter>-->
         </appender>
         <root level="${log_test_level}">
-            <appender-ref ref="FileAppender"/>
+            <!--            <appender-ref ref="FileAppender"/>-->
             <appender-ref ref="ConsoleAppender"/>
         </root>
     </springProfile>
