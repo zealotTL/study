@@ -2,7 +2,6 @@ package group.zealot.study.algorithm;
 
 import ch.qos.logback.classic.Level;
 import group.zealot.study.algorithm.search.Search;
-import group.zealot.study.algorithm.sort.Sort;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static group.zealot.study.algorithm.util.Utils.SearchUtil;
-import static group.zealot.study.algorithm.util.Utils.SortUtil;
 
 /**
  * @author zealot
@@ -32,6 +30,7 @@ public class SearchCheck {
     @Before
     public void setLevel() {
         Run.setLogLevel(Level.INFO);// checkCareful()打开
+//        Run.setLogLevel(Level.TRACE);
     }
 
     @Test
