@@ -47,16 +47,10 @@ public class SortCheck {
     @Test
     public void contrast() {
         List<Sort> sortList = new ArrayList<>();
-        sortList.add(context.getBean(InertSort.class));
-        sortList.add(context.getBean(InertSort.class));
-        sortList.add(context.getBean(InertSort.class));
-        sortList.add(context.getBean(InertSort.class));
-
+        sortList.add(context.getBean(MergeSort.class));
+        sortList.add(context.getBean(QuickSort.class));
         sortList.add(context.getBean(InsertSort.class));
-        sortList.add(context.getBean(InsertSort.class));
-        sortList.add(context.getBean(InsertSort.class));
-        sortList.add(context.getBean(InsertSort.class));
-        SortUtil.check(sortList);
+        SortUtil.checkCareful(sortList);
     }
 
 }

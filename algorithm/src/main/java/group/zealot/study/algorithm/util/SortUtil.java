@@ -5,6 +5,7 @@ import group.zealot.study.algorithm.sort.Sort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +36,16 @@ public class SortUtil {
         numbersList.add(NumbersUtil.create(100));
         numbersList.add(NumbersUtil.create(1000));
         numbersList.add(NumbersUtil.create(10000));
+        StopWatch sw = new StopWatch();
         list.forEach(sort -> {
-            long start = System.nanoTime();
             logger.info("开始检测" + sort.getClass());
+            sw.start("Sort" + sort.getClass());
             if (checkCareful(sort, NumbersUtil.cloneNumbersList(numbersList))) {
                 logger.info("检测通过:" + sort.getClass());
             }
-            long end = System.nanoTime();
-            logger.info("cost :" + (end - start));
+            sw.stop();
         });
+        logger.info(sw.prettyPrint());
     }
 
     /**
@@ -79,16 +81,26 @@ public class SortUtil {
      * @param list 算法对象组
      */
     public void check(List<Sort> list) {
-        int[] numbers = NumbersUtil.create(1000);
-        list.forEach(sort -> {
-            long start = System.nanoTime();
+        StopWatch sw = new StopWatch();
+        List<int[]> numbers = prepareData(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            Sort sort = list.get(i);
             logger.info("开始检测" + sort.getClass());
-            if (check(sort, numbers.clone())) {
+            sw.start("sort:"+sort.getClass());
+            if (check(sort, numbers.get(i))) {
                 logger.info("检测通过:" + sort.getClass());
             }
-            long end = System.nanoTime();
-            logger.info("cost :" + (end - start));
-        });
+            sw.stop();
+        }
+        logger.info(sw.prettyPrint());
+    }
+
+    private List<int[]> prepareData(int n) {
+        List<int[]> numbers = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            numbers.add(NumbersUtil.create(10000));
+        }
+        return numbers;
     }
 
     /**
