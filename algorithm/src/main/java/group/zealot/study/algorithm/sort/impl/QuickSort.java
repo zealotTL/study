@@ -25,40 +25,39 @@ public class QuickSort extends AbsSort {
      * @param end   结束元素下标
      */
     private void quickSort(int start, int end) {
-        int q = start;//默认以第一个元素为基准元素，所以先从右往左找第一个比基准元素小的
+        if(start >= end){
+            return;
+        }
+        int q = getP(start,end);
 
-        int left = start + 1;
-        int right = end;
+        quickSort(start, q - 1);
+        quickSort(q + 1, end);
+    }
+
+    private int getP(int start,int end) {
+        int p = numbers[start];//默认以第一个元素为基准元素，所以先从右往左找第一个比基准元素小的
+        int left = start;
+        int right = end+1;
         //从队列右侧寻找第一个小于基准元素并交换，然后从队列左侧寻找第一个大于基准元素并交换。
         // 当left == right时，则比较此元素与基准大小并交换位置。跳出循环，此时队列两次元素以基准元素分割（左小右大）
-        while (left <= right) {
-            right = getRight(left, right, q);
-            if (right == -1) {
-                break;
-            } else {
-                exchange(q, right);
-                q = right;
-                right = right - 1;
-
-                left = getLeft(left, right, q);
-
-                if (left == -1) {
+        while (true) {
+            while (numbers[++left] < p){
+                if(left == end){
                     break;
-                } else {
-                    exchange(q, left);
-                    q = left;
-                    left = left + 1;
                 }
             }
+            while (numbers[--right] > p){
+                if(right == start){
+                    break;
+                }
+            }
+            if(left >= right){
+                break;
+            }
+            exchange(left,right);
         }
-
-        logNumbers(num++);
-        if (start < q - 1) {
-            quickSort(start, q - 1);
-        }
-        if (q + 1 < end) {
-            quickSort(q + 1, end);
-        }
+        exchange(start,right);
+        return right;
     }
 
 

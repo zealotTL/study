@@ -50,7 +50,7 @@ public class SortCheck {
         sortList.add(context.getBean(MergeSort.class));
         sortList.add(context.getBean(QuickSort.class));
         sortList.add(context.getBean(InsertSort.class));
-        SortUtil.checkCareful(sortList);
+        SortUtil.check(sortList);
     }
 
 }

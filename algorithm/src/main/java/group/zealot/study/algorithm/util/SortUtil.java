@@ -39,7 +39,7 @@ public class SortUtil {
         StopWatch sw = new StopWatch();
         list.forEach(sort -> {
             logger.info("开始检测" + sort.getClass());
-            sw.start("Sort" + sort.getClass());
+            sw.start("sort:" + sort.getClass());
             if (checkCareful(sort, NumbersUtil.cloneNumbersList(numbersList))) {
                 logger.info("检测通过:" + sort.getClass());
             }
