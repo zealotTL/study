@@ -33,7 +33,12 @@ public abstract class AbsTreeSearch extends AbsSearch {
     protected void doSearchKey() {
         logger.debug("transformToTree 开始");
         AbsTree root = transformToTree();
-        logger.debug("transformToTree 完成，检测结果：" + checkTree(root));
+        boolean checkResult = checkTree(root);
+        if (checkResult) {
+            logger.debug("transformToTree 完成，检测结果：" + checkResult);
+        } else {
+            logger.error("transformToTree 完成，检测结果：" + checkResult);
+        }
         root.print();//打印树形结构
         searchTree(root);
     }
