@@ -13,27 +13,62 @@ public class BinaryTreeSearch extends AbsTreeSearch {
 
     @Override
     protected BinaryTree transformToTree() {
-        BinaryTree root = new BinaryTree(numbers[0], 0);
-        for (int i = 1; i < numbers.length; i++) {
-            treeAddValue(root, i, numbers[i]);
+        BinaryTree root = new BinaryTree(0);
+        for (int i = 1; i < length; i++) {
+            treeAddValue(root, i);
         }
         return root;
     }
 
-    private void treeAddValue(BinaryTree tree, int index, int value) {
-        if (compareValue(tree.getValue(), value)) {
+    @Override
+    protected boolean checkTree(AbsTree tree) {
+        if (tree instanceof BinaryTree) {
+            return checkTree((BinaryTree) tree);
+        }
+        return false;
+    }
+
+    private boolean checkTree(BinaryTree tree) {
+        if (tree.left != null) {
+            if (compare(tree.getValue(), tree.left.getValue()) != 1) {
+                logger.warn("树结构检测不通过");
+                logger.warn("tree:{} ,index{}", tree.getValue(), tree.getIndexs());
+                logger.warn("tree.left:{} ,index{}", tree.left.getValue(), tree.left.getIndexs());
+                return false;
+            }
+            if (!checkTree(tree.left)) {
+                return false;
+            }
+        }
+        if (tree.right != null) {
+            if (compare(tree.getValue(), tree.right.getValue()) != -1) {
+                logger.warn("树结构检测不通过");
+                logger.warn("tree:{} ,index{}", tree.getValue(), tree.getIndexs());
+                logger.warn("tree.right:{} ,index{}", tree.right.getValue(), tree.right.getIndexs());
+                return false;
+            }
+            if (!checkTree(tree.right)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void treeAddValue(BinaryTree tree, int index) {
+        int value = numbers[index];
+        if (compare(tree.getValue(), value) == 0) {
             tree.addIndex(index);
-        } else if (compareValue(tree.getValue(), value)) {
+        } else if (compare(tree.getValue(), value) == 1) {
             if (tree.left == null) {
-                tree.left = new BinaryTree(value, index);
+                tree.left = new BinaryTree(index);
             } else {
-                treeAddValue(tree.left, index, value);
+                treeAddValue(tree.left, index);
             }
         } else {
             if (tree.right == null) {
-                tree.right = new BinaryTree(value, index);
+                tree.right = new BinaryTree(index);
             } else {
-                treeAddValue(tree.right, index, value);
+                treeAddValue(tree.right, index);
             }
         }
     }
@@ -41,9 +76,9 @@ public class BinaryTreeSearch extends AbsTreeSearch {
 
     @Override
     protected AbsTree[] doSearchTree(AbsTree tree) {
-        if (compareValue(tree.getValue(), key)) {
+        if (compare(tree.getValue(), key) == 0) {
             return returnTree(tree);
-        } else if (compareValue(tree.getValue(), key)) {
+        } else if (compare(tree.getValue(), key) == 1) {
             return returnTree(((BinaryTree) tree).left);
         } else {
             return returnTree(((BinaryTree) tree).right);
@@ -56,12 +91,12 @@ public class BinaryTreeSearch extends AbsTreeSearch {
         return trees;
     }
 
-    class BinaryTree extends AbsTree {
-        BinaryTree left;//小于 value
-        BinaryTree right;//大于 value
+    private class BinaryTree extends AbsTree {
+        private BinaryTree left;//小于 value
+        private BinaryTree right;//大于 value
 
-        BinaryTree(int value, int index) {
-            super(value, index);
+        BinaryTree(int index) {
+            super(numbers[index], index);
         }
 
         @Override

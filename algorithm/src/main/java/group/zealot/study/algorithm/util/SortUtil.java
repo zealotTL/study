@@ -13,6 +13,8 @@ import java.util.List;
 import static group.zealot.study.algorithm.util.Utils.*;
 
 /**
+ * 排序工具类
+ * <p>
  * 打印的cost为纳秒，此为参考（和JVM申请内存，以及各种优化相关）
  * 若要相对准确的，可以多次【运行】单个方法的排序，然后取平均值。再以平均值对比
  *
@@ -86,7 +88,7 @@ public class SortUtil {
         for (int i = 0; i < list.size(); i++) {
             Sort sort = list.get(i);
             logger.info("开始检测" + sort.getClass());
-            sw.start("sort:"+sort.getClass());
+            sw.start("sort:" + sort.getClass());
             if (check(sort, numbers.get(i))) {
                 logger.info("检测通过:" + sort.getClass());
             }

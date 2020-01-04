@@ -76,13 +76,12 @@ public abstract class AbsSearch implements Search {
      * @param i A元素的下标 A=numbers[i]
      */
     protected boolean compareKey(int i) {
-        contrastNumber++;
-        return NumberUtil.compare(numbers[i], key) == 0;
+        return compare(numbers[i], key) == 0;
     }
 
-    protected boolean compareValue(int a, int b) {
+    protected int compare(int a, int b) {
         contrastNumber++;
-        return NumberUtil.compare(a, b) == 0;
+        return NumberUtil.compare(a, b);
     }
 
     /**

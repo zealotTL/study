@@ -11,6 +11,12 @@ import java.util.List;
 
 import static group.zealot.study.algorithm.util.Utils.*;
 
+/**
+ * 查询工具类
+ * <p>
+ * 打印的cost为纳秒，此为参考（和JVM申请内存，以及各种优化相关）
+ * 若要相对准确的，可以多次【运行】单个方法的排序，然后取平均值。再以平均值对比
+ */
 @Component
 public class SearchUtil {
     protected Logger logger = LoggerFactory.getLogger(getClass());
@@ -42,7 +48,7 @@ public class SearchUtil {
     /**
      * 用多组数据对算法进行检测
      *
-     * @param search        算法对象
+     * @param search      算法对象
      * @param numbersList 目标数组队列
      * @param key         key
      */

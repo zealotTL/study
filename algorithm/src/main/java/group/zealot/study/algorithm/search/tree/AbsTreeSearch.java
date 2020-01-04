@@ -12,6 +12,13 @@ public abstract class AbsTreeSearch extends AbsSearch {
     abstract protected AbsTree transformToTree();
 
     /**
+     * 检测树结构是否正确
+     *
+     * @param tree 树根节点
+     */
+    abstract protected boolean checkTree(AbsTree tree);
+
+    /**
      * 搜索树，并返回多棵树
      * 存着key的节点，必须在返回的数组[树]当中，可以是树节点或子节点
      *
@@ -26,7 +33,7 @@ public abstract class AbsTreeSearch extends AbsSearch {
     protected void doSearchKey() {
         logger.debug("transformToTree 开始");
         AbsTree root = transformToTree();
-        logger.debug("transformToTree 完成");
+        logger.debug("transformToTree 完成，检测结果：" + checkTree(root));
         root.print();//打印树形结构
         searchTree(root);
     }
@@ -42,7 +49,7 @@ public abstract class AbsTreeSearch extends AbsSearch {
             return;
         }
         for (AbsTree son : sons) {
-            if (compareValue(son.getValue(), key)) {
+            if (compare(son.getValue(), key) == 0) {
                 addKeyPointTree(son);
             } else {
                 searchTree(son);

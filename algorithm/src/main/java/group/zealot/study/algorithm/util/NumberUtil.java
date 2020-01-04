@@ -53,7 +53,10 @@ public class NumberUtil {
 
     /**
      * F
-     * 直接比较元素a和b，a >= b，返回true
+     * 直接比较元素a和b
+     * a>b 返回1
+     * a=b 返回0
+     * a<b 返回-1
      *
      * @param a A元素
      * @param b B元素
