@@ -32,8 +32,8 @@ public class BinaryTreeSearch extends AbsTreeSearch {
         if (tree.left != null) {
             if (compare(tree.getValue(), tree.left.getValue()) != 1) {
                 logger.warn("树结构检测不通过");
-                logger.warn("tree:{} ,index{}", tree.getValue(), tree.getIndexs());
-                logger.warn("tree.left:{} ,index{}", tree.left.getValue(), tree.left.getIndexs());
+                logger.warn("tree {} ,index {}", tree.getValue(), tree.getIndexs());
+                logger.warn("tree.left {} index {}", tree.left.getValue(), tree.left.getIndexs());
                 return false;
             }
             if (!checkTree(tree.left)) {
@@ -43,8 +43,8 @@ public class BinaryTreeSearch extends AbsTreeSearch {
         if (tree.right != null) {
             if (compare(tree.getValue(), tree.right.getValue()) != -1) {
                 logger.warn("树结构检测不通过");
-                logger.warn("tree:{} ,index{}", tree.getValue(), tree.getIndexs());
-                logger.warn("tree.right:{} ,index{}", tree.right.getValue(), tree.right.getIndexs());
+                logger.warn("tree {} index {}", tree.getValue(), tree.getIndexs());
+                logger.warn("tree.right {} index {}", tree.right.getValue(), tree.right.getIndexs());
                 return false;
             }
             if (!checkTree(tree.right)) {
@@ -86,9 +86,13 @@ public class BinaryTreeSearch extends AbsTreeSearch {
     }
 
     private AbsTree[] returnTree(AbsTree tree) {
-        AbsTree[] trees = new AbsTree[1];
-        trees[0] = tree;
-        return trees;
+        if (tree == null) {
+            return null;
+        } else {
+            AbsTree[] trees = new AbsTree[1];
+            trees[0] = tree;
+            return trees;
+        }
     }
 
     private class BinaryTree extends AbsTree {

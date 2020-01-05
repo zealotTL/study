@@ -125,10 +125,10 @@ public class NumbersUtil {
     public int getLength(int[] numbers) {
         int i = 0;
         for (int item : numbers) {
-            i++;
             if (item == NUMBERS_DEFULT_VALUE) {
                 break;
             }
+            i++;
         }
         return i;
     }

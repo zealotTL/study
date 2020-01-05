@@ -79,7 +79,7 @@ public class SearchUtil {
      * @param search 算法对象
      */
     public boolean check(Search search) {
-        return check(search, NumbersUtil.create(1000, 100), NumberUtil.getRandom(2));
+        return check(search, NumbersUtil.create(1000, 10000), NumberUtil.getRandom(2));
     }
 
     /**

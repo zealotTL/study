@@ -35,9 +35,9 @@ public abstract class AbsTreeSearch extends AbsSearch {
         AbsTree root = transformToTree();
         boolean checkResult = checkTree(root);
         if (checkResult) {
-            logger.debug("transformToTree 完成，检测结果：" + checkResult);
+            logger.debug("transformToTree 完成，树结构检测结果：" + checkResult);
         } else {
-            logger.error("transformToTree 完成，检测结果：" + checkResult);
+            logger.error("transformToTree 完成，树结构检测结果：" + checkResult);
         }
         root.print();//打印树形结构
         searchTree(root);

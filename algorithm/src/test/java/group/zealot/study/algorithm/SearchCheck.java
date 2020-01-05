@@ -2,6 +2,7 @@ package group.zealot.study.algorithm;
 
 import ch.qos.logback.classic.Level;
 import group.zealot.study.algorithm.search.Search;
+import group.zealot.study.algorithm.search.tree.impl.RedBlackTreeSearch;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,8 +30,8 @@ public class SearchCheck {
 
     @Before
     public void setLevel() {
-        Run.setLogLevel(Level.INFO);// checkCareful()打开
-//        Run.setLogLevel(Level.TRACE);
+//        Run.setLogLevel(Level.INFO);// checkCareful()打开
+        Run.setLogLevel(Level.TRACE);
     }
 
     @Test
@@ -38,5 +39,12 @@ public class SearchCheck {
         Map<String, Search> map = context.getBeansOfType(Search.class);
         //跳转log级别为INFO
         SearchUtil.checkCareful(new ArrayList<>(map.values()));
+    }
+
+    @Test
+    public void check() {
+        Search search = context.getBean(RedBlackTreeSearch.class);
+        //跳转log级别为INFO
+        SearchUtil.check(search);
     }
 }
