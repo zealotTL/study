@@ -23,7 +23,7 @@ public abstract class AbsTreeSearch extends AbsSearch {
      * 存着key的节点，必须在返回的数组[树]当中，可以是树节点或子节点
      *
      * @param tree 树节点
-     * @return trees 数组[树]
+     * @return trees 数组[树]（可为null）
      */
     abstract protected AbsTree[] doSearchTree(AbsTree tree);
 

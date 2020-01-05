@@ -293,6 +293,11 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
         }
     }
 
+    /**
+     * 返回待检测的树 数组（可返回null）
+     *
+     * @param tree 待检测树（可为null）
+     */
     private AbsTree[] returnTree(AbsTree tree) {
         if (tree == null) {
             return null;
