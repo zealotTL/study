@@ -4,7 +4,18 @@ import group.zealot.study.algorithm.search.tree.AbsTreeSearch;
 import group.zealot.study.algorithm.search.tree.AbsTree;
 
 /**
- * 红黑树
+ * 红黑树：
+ * 【1】、根节点黑色
+ * 【2】、节点颜色要么是黑，要么是红
+ * 【3】、相邻接点颜色不能都是红
+ * 【4】、叶节点到根节点路径上，黑节点个数都一样
+ * <p>
+ * 备注:
+ * 1、叶节点高度指 叶节点到根节点路径上黑节点个数
+ * 2、默认插入的节点是红色（不增加树高，仅可能与【1】【3】冲突，后续调整方式好处理）
+ * 3、X表示刚插入的节点（触发节点），G表示祖父节点，F表示父节点，P表示G的另一个子节点（叔节点），A表示F的另一个子节点
+ * 4、Xr中r表示red 红色节点，Xb中b表示black黑色节点
+ * 5、left节点的value 小于 父节点的value，right节点value 大于 父节点的value
  *
  * @author zealotTL
  * @date 2019-12-29 08:50
@@ -61,11 +72,12 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
             xTree.color = BLACK;//直接变黑，路径增高1
         } else if (xTree.father.color == RED) {
             //触发节点非根且需要调整，则此节点 必然存在F、G节点
-            //判断平衡打破的类型，并相应调整（向上调整：后续各个调整类型前提都是当前节点的颜色都不变）
+            //判断平衡打破的类型，并相应调整
             RedBlackTree fTree = xTree.father;
             RedBlackTree gTree = fTree.father;
             RedBlackTree pTree = gTree.right;
             if (pTree == null) {
+                //调整结构和颜色，不会造成节点增高
                 adjustPNull(xTree, fTree, gTree);
             } else {
                 adjustPNotNull(fTree, pTree, gTree);
@@ -75,7 +87,7 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
 
     /**
      * Xr红色（触发节点），Fr红色，Gb黑色（既可以是根，也可以非根）,P不存在
-     * 推测：A也不存在
+     * 推测：A不存在，且X无子节点
      * =》调整结构和颜色
      * <p> LL
      * -           Gb          Fb
@@ -102,9 +114,9 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
      * -             \
      * -             Xr
      * <p>
-     * 此树的叶节点到根节点的黑色节点个数不变
+     * 此树的叶节点高度保持不变
      *
-     * @param xTree Xr节点（颜色不能变动）
+     * @param xTree Xr节点
      * @param fTree Fr节点
      * @param gTree Gb节点
      */
@@ -151,7 +163,7 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
 
     /**
      * b节点替换成a节点
-     * =》 F <---> a 建立双向父子关系，F <--- b 依旧是单向父子关系（仅有b的父节点是F）
+     * =》 F <---> a 建立双向父子关系，F -!- b 双向关系断开
      * <p> 无父节点
      * -      a  b     => a  b
      * <p> L
@@ -168,12 +180,15 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
      * @param bTree 替换前的节点
      */
     private void changeSon(RedBlackTree aTree, RedBlackTree bTree) {
+        //建立a--->F的关系，断开b-!->F的关系
         aTree.father = bTree.father;
-        if (bTree.father != null) {
-            if (bTree.father.left == bTree) {
-                bTree.father.left = aTree;
+        bTree.father = null;
+        if (aTree.father != null) {
+            //断开F-!->b的关系，建立F--->a的关系
+            if (aTree.father.left == bTree) {
+                aTree.father.left = aTree;
             } else {
-                bTree.father.right = aTree;
+                aTree.father.right = aTree;
             }
         }
     }
@@ -235,7 +250,7 @@ public class RedBlackTreeSearch extends AbsTreeSearch {
      * -         Fr Pr   =>    Fb Pb
      * -        / \           / \
      * -       A  Xr         A  Xr
-     * 此树的叶节点，到根节点的黑色节点个数不变，但G变色了，以下情况需要进一步调整
+     * 此树的叶节点的高度不变，但G变色了，以下情况需要进一步调整
      * 1：G的父节点为红色，则G作为触发节点，再做调整 adjust(G)
      * 2：G为根节点，则调整 adjust(G)
      *
