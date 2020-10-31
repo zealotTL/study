@@ -47,7 +47,6 @@
 
     <modules>
         <module>core</module>
-        <module>dubbo</module>
         <module>algorithm</module>
         <module>demo</module>
     </modules>
