@@ -48,7 +48,6 @@
     <modules>
         <module>core</module>
         <module>algorithm</module>
-        <module>demo</module>
     </modules>
 
 
