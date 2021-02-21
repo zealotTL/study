@@ -33,6 +33,7 @@
         <curator.version>4.2.0</curator.version>
         <nacos-config.version>0.2.3</nacos-config.version>
         <rocketmq.version>4.4.0</rocketmq.version>
+        <bouncycastle.version>1.46</bouncycastle.version>
     </properties>
     <developers>
         <developer>
@@ -47,8 +48,7 @@
 
     <modules>
         <module>core</module>
-        <module>dubbo</module>
-        <module>algorithm</module>
+        <module>springcloud</module>
         <module>demo</module>
     </modules>
 
@@ -160,8 +160,12 @@
                 <artifactId>rocketmq-logappender</artifactId>
                 <version>${rocketmq.version}</version>
             </dependency>
-
-
+            <!--AES加密算法-->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

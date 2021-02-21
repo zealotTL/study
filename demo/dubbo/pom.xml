@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>group.zealot</groupId>
-        <artifactId>study</artifactId>
+        <artifactId>study-demo</artifactId>
         <version>0.1</version>
     </parent>
 
-    <artifactId>study-core</artifactId>
+    <artifactId>study-demo-dubbo</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
 
@@ -21,9 +21,8 @@
     </properties>
 
     <modules>
-        <module>base</module>
-        <module>dubbo</module>
-        <module>sc</module>
+        <module>aService</module>
+        <module>bService</module>
     </modules>
 
     <build>
