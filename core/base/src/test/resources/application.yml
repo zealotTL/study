@@ -47,3 +47,6 @@ cdr:
         - id: 594417455
           name: 联想懂的
           sftp: clw
+          type:
+            - name: cmp_xxx
+              base-dir: /abd
