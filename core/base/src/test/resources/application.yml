@@ -1,0 +1,49 @@
+cdr:
+  download:
+    cmp:
+      name:
+        - cmp
+      days: 7
+      base-dir: /ticket_file
+    dcp:
+      month: 2
+      base-dir: ""
+      name:
+        - cdr-dcp-sos
+        - cdr-dcp-soshz
+        - cdr-dcp-wsl
+        - cdr-dcp-dfhs
+        - cdr-dcp-md
+        - cdr-dcp-clw
+      type:
+        - egsn
+        - voltel
+        - sms
+        - ivpn
+        - pbr
+  push:
+    dcp:
+      type:
+        - name: dcp_egsn
+          base-dir: /CT_CDR/DATA
+        - name: dcp_voltel
+          base-dir: /CT_CDR/VOICE
+        - name: dcp_sms
+          base-dir: /CT_CDR/SMS
+    cmp:
+      type:
+        - name: cmp_flow
+          base-dir: /data/cdr_cmp/flow
+        - name: cmp_sms
+          base-dir: /data/cdr_cmp/sms
+        - name: cmp_voice
+          base-dir: /data/cdr_cmp/voice
+    cust:
+      dcp:
+        - id: 50000010
+          name: 安吉星
+          sftp: sos
+      cmp:
+        - id: 594417455
+          name: 联想懂的
+          sftp: clw
