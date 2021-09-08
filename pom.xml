@@ -29,7 +29,7 @@
         <shiro.version>1.4.0</shiro.version>
         <mybatis-plus.version>3.0.1</mybatis-plus.version>
         <mybatis-jsr310.version>1.0.2</mybatis-jsr310.version>
-        <dubbo.version>2.7.3</dubbo.version>
+        <dubbo.version>2.7.13</dubbo.version>
         <curator.version>4.2.0</curator.version>
         <nacos-config.version>0.2.3</nacos-config.version>
         <rocketmq.version>4.4.0</rocketmq.version>
